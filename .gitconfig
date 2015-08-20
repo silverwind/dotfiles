@@ -1,0 +1,52 @@
+[core]
+  legacyheaders = false
+  quotepath = false
+  trustctime = false
+  precomposeunicode = false
+  pager = cat
+[repack]
+  usedeltabaseoffset = true
+[merge]
+  log = true
+[apply]
+  whitespace = fix
+[help]
+  autocorrect = true
+[rerere]
+  enabled = true
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = always
+[color "diff"]
+  meta = yellow bold
+  frag = magenta
+  plain = white bold
+  old = red bold
+  new = green bold
+  commit = yellow bold
+  func = green dim
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[diff]
+  renames = copies
+[diff "bin"]
+  textconv = hexdump -v -C
+[credential]
+  helper = store
+[status]
+  relativePaths = true
+  showUntrackedFiles = no
+[pull]
+  rebase = true
+[push]
+  default = current
+  followTags = true
