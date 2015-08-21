@@ -50,3 +50,6 @@
 [push]
   default = current
   followTags = true
+[alias]
+  dif = diff
+  pushf = push --force-with-lease
