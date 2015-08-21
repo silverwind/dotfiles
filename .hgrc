@@ -1,0 +1,7 @@
+[defaults]
+qnew = -Ue
+
+[diff]
+git = 1
+showfunc = 1
+unified = 8
