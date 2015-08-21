@@ -11,7 +11,7 @@
 [apply]
   whitespace = fix
 [help]
-  autocorrect = true
+  autocorrect = 1
 [rerere]
   enabled = true
 [color]
