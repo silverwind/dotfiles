@@ -54,3 +54,6 @@
 [alias]
   dif = diff
   pushf = push --force-with-lease
+[remote "origin"]
+  fetch = +refs/pr/*/head:refs/remotes/origin/pr/*
+  fetch = +refs/tags/*:refs/tags/*
