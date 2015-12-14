@@ -57,3 +57,6 @@
 [remote "origin"]
   fetch = +refs/pr/*/head:refs/remotes/origin/pr/*
   fetch = +refs/tags/*:refs/tags/*
+[branch]
+  autosetupmerge = always
+  autosetuprebase = always
