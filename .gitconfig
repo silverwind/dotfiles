@@ -4,6 +4,7 @@
   trustctime = false
   precomposeunicode = false
   pager = cat
+  logAllRefUpdates = true
 [repack]
   usedeltabaseoffset = true
 [merge]
