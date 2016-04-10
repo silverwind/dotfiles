@@ -1,63 +1,65 @@
 [core]
-  legacyheaders = false
-  quotepath = false
-  trustctime = false
-  precomposeunicode = false
-  pager = cat
-  logAllRefUpdates = true
+	legacyheaders = false
+	quotepath = false
+	trustctime = false
+	precomposeunicode = false
+	pager = cat
+	logAllRefUpdates = true
 [repack]
-  usedeltabaseoffset = true
+	usedeltabaseoffset = true
 [merge]
-  log = true
+	log = true
 [apply]
-  whitespace = fix
+	whitespace = fix
 [help]
-  autocorrect = 1
+	autocorrect = 1
 [rerere]
-  enabled = true
+	enabled = true
 [color]
-  diff = auto
-  status = auto
-  branch = auto
-  interactive = auto
-  ui = always
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = always
 [color "diff"]
-  meta = yellow bold
-  frag = magenta
-  plain = white bold
-  old = red bold
-  new = green bold
-  commit = yellow bold
-  func = green dim
+	meta = yellow bold
+	frag = magenta
+	plain = white bold
+	old = red bold
+	new = green bold
+	commit = yellow bold
+	func = green dim
 [color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
+	added = yellow
+	changed = green
+	untracked = cyan
 [color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
+	current = yellow reverse
+	local = yellow
+	remote = green
 [diff]
-  renames = copies
-  algorithm = patience
+	renames = copies
+	algorithm = patience
 [diff "bin"]
-  textconv = hexdump -v -C
+	textconv = hexdump -v -C
 [credential]
-  helper = store
+	helper = store
 [status]
-  relativePaths = true
-  showUntrackedFiles = no
+	relativePaths = true
+	showUntrackedFiles = no
 [pull]
-  rebase = true
+	rebase = true
 [push]
-  default = current
-  followTags = true
+	default = current
+	followTags = true
 [alias]
-  dif = diff
-  pushf = push --force-with-lease
+	dif = diff
+	pushf = push --force-with-lease
 [remote "origin"]
-  fetch = +refs/pr/*/head:refs/remotes/origin/pr/*
-  fetch = +refs/tags/*:refs/tags/*
+	fetch = +refs/pr/*/head:refs/remotes/origin/pr/*
+	fetch = +refs/tags/*:refs/tags/*
 [branch]
-  autosetupmerge = always
-  autosetuprebase = always
+	autosetupmerge = always
+	autosetuprebase = always
+[commit]
+	gpgsign = true
