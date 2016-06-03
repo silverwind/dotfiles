@@ -1,0 +1,107 @@
+set nocompatible
+
+" Vundle
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'Townk/vim-autoclose'
+Plugin 'tpope/vim-sleuth'
+call vundle#end()
+filetype plugin indent on
+
+colorscheme silverwind
+hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+
+filetype plugin on
+filetype indent on
+syntax on
+set encoding=utf-8
+set history=500
+
+" Return to last edit position when opening files
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Treat long lines as break lines
+map j gj
+map k gk
+
+" Save on focus lost
+au FocusLost * silent! wa
+
+" :W does sudo save
+command W w !sudo tee % > /dev/null
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+" Auto reload .vimrc when editing
+autocmd! bufwritepost .vimrc source ~/.vimrc
+
+au FileType Makefile set noexpandtab
+inoremap <C-U> <C-G>u<C-U>
+
+set autoindent
+set autoread
+set background=dark
+set backspace=indent,eol,start
+set bs=2
+set cmdheight=1
+set complete-=i
+set copyindent
+set cursorcolumn
+set cursorline
+set expandtab
+set ffs=unix,dos,mac
+set foldmethod=marker
+set gdefault
+set hidden
+set history=500
+set hlsearch
+set ignorecase
+set incsearch
+set laststatus=2
+set lazyredraw
+set listchars=tab:>-,trail:·,eol:$
+set magic
+set mat=2
+set nobackup
+set noerrorbells
+set nofoldenable
+set noswapfile
+set notitle
+set novisualbell
+set nowritebackup
+set nrformats-=octal
+set nu
+set pastetoggle=<F2>
+set ruler
+set scrolloff=1
+set sessionoptions-=options
+set shiftwidth=2
+set showcmd
+set showmatch
+set showmode
+set sidescrolloff=5
+set smartcase
+set smartindent
+set smarttab
+set softtabstop=2
+set t_vb=
+set tabpagemax=50
+set tabstop=2
+set title
+set tm=500
+set ttimeout
+set ttimeoutlen=50
+set ttyfast
+set virtualedit=block
+set visualbell
+set visualbell t_vb=
+set whichwrap+=<,>,h,l
+set wildchar=<TAB>
+set wildignore+=*~,*.o,,*.pyc,.git\*,.hg\*,.svn\*
+set wildmenu
+set wrap
