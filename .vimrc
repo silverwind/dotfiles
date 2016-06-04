@@ -65,7 +65,6 @@ set sessionoptions-=options
 set shiftwidth=2
 set showcmd
 set showmatch
-set showmode
 set sidescrolloff=5
 set smartcase
 set smartindent
