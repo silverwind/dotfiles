@@ -44,6 +44,7 @@ set history=500
 set hlsearch
 set ignorecase
 set incsearch
+set lazyredraw
 set laststatus=2
 set listchars=tab:>-,trail:·,eol:$
 set magic
@@ -70,6 +71,8 @@ set smartcase
 set smartindent
 set smarttab
 set softtabstop=2
+set splitbelow
+set splitright
 set t_vb=
 set tabpagemax=50
 set tabstop=2
@@ -86,6 +89,12 @@ set wildchar=<TAB>
 set wildignore+=*~,*.o,,*.pyc,.git\*,.hg\*,.svn\*
 set wildmenu
 set wrap
+
+" Simpler split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
