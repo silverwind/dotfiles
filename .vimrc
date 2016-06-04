@@ -117,3 +117,9 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 
 au FileType Makefile set noexpandtab
 inoremap <C-U> <C-G>u<C-U>
+
+" Enable rainbow
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
