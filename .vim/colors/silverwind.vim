@@ -10,16 +10,17 @@ hi link htmlTag              xmlTag
 hi link htmlTagName          xmlTagName
 hi link htmlEndTag           xmlEndTag
 
-highlight Normal                    guibg=#111111
+highlight Pmenu                     ctermbg=234 ctermfg=172
+highlight PmenuSel                  ctermbg=238 ctermfg=208
 highlight Cursor                    ctermfg=0 ctermbg=15
 highlight CursorLine                ctermbg=234 cterm=NONE
 highlight CursorColumn              ctermbg=234 cterm=NONE
-highlight Comment                   ctermfg=180 gui=italic
+highlight Comment                   ctermfg=180
 highlight Constant                  ctermfg=73
 highlight Define                    ctermfg=173
 highlight Error                     ctermfg=221 ctermbg=88
 highlight Function                  ctermfg=221 cterm=NONE
-highlight Identifier                ctermfg=73  cterm=NONE
+highlight Identifier                ctermfg=74  cterm=NONE
 highlight Include                   ctermfg=173 cterm=NONE
 highlight PreCondit                 ctermfg=173 cterm=NONE
 highlight Keyword                   ctermfg=173 cterm=NONE

@@ -14,8 +14,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-sleuth'
+Plug 'ervandew/supertab'
 call plug#end()
-
 set nocompatible
 filetype plugin indent on
 colorscheme silverwind
@@ -35,6 +35,7 @@ set copyindent
 set cursorcolumn
 set cursorline
 set encoding=utf-8
+set equalalways " Make all windows the same size when adding/removing windows
 set expandtab
 set ffs=unix,dos,mac
 set foldmethod=marker
@@ -50,6 +51,7 @@ set listchars=tab:>-,trail:·,eol:$
 set magic
 set mat=2
 set nobackup
+set nobomb " Turn off the byte order mark
 set noerrorbells
 set nofoldenable
 set noshowmode
@@ -77,10 +79,12 @@ set t_vb=
 set tabpagemax=50
 set tabstop=2
 set title
+set titleold= " Don't set the title to 'Thanks for flying Vim' when exiting
 set tm=500
 set ttimeout
 set ttimeoutlen=50
 set ttyfast
+set undolevels=1000
 set virtualedit=block
 set visualbell
 set visualbell t_vb=
@@ -89,6 +93,7 @@ set wildchar=<TAB>
 set wildignore+=*~,*.o,,*.pyc,.git\*,.hg\*,.svn\*
 set wildmenu
 set wrap
+set wrapscan " Searches wrap around when reaching EOF
 
 " Simpler split navigation
 nnoremap <C-J> <C-W><C-J>
@@ -129,3 +134,23 @@ autocmd Syntax * RainbowParenthesesLoadBraces
 
 " Force redraw for lighline (Cygwin issue)
 autocmd VimEnter * redraw
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
