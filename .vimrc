@@ -97,29 +97,35 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Return to last edit position when opening files
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Treat long lines as break lines
 map j gj
 map k gk
 
 " Save on focus lost
-au FocusLost * silent! wa
+autocmd FocusLost * silent! wa
 
 " :W does sudo save
-command W w !sudo tee % > /dev/null
+command! W w !sudo tee % > /dev/null
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Auto reload .vimrc when editing
-autocmd! bufwritepost .vimrc source ~/.vimrc
+augroup reload_vimrc
+    autocmd!
+    autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
+augroup END
 
-au FileType Makefile set noexpandtab
+autocmd FileType Makefile set noexpandtab
 inoremap <C-U> <C-G>u<C-U>
 
 " Enable rainbow
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+autocmd VimEnter * RainbowParenthesesToggle
+autocmd Syntax * RainbowParenthesesLoadRound
+autocmd Syntax * RainbowParenthesesLoadSquare
+autocmd Syntax * RainbowParenthesesLoadBraces
+
+" Force redraw for lighline (Cygwin issue)
+autocmd VimEnter * redraw
