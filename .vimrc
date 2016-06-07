@@ -32,7 +32,6 @@ set bs=2
 set cmdheight=1
 set complete-=i
 set copyindent
-set cursorcolumn
 set cursorline
 set encoding=utf-8
 set equalalways " Make all windows the same size when adding/removing windows
