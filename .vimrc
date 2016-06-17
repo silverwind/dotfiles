@@ -15,6 +15,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-sleuth'
 Plug 'ervandew/supertab'
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 set nocompatible
 filetype plugin indent on
