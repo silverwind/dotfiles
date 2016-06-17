@@ -59,7 +59,6 @@ set notitle
 set novisualbell
 set nowritebackup
 set nrformats-=octal
-set nu
 set pastetoggle=<F2>
 set ruler
 set scrolloff=1
