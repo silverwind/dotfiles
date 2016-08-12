@@ -63,3 +63,7 @@
 	autosetuprebase = always
 [commit]
 	gpgsign = true
+[http]
+	sslVerify = false
+[submodule]
+	fetchJobs = 0
