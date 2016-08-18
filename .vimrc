@@ -107,9 +107,6 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 map j gj
 map k gk
 
-" Save on focus lost
-autocmd FocusLost * silent! wa
-
 " :W does sudo save
 command! W w !sudo tee % > /dev/null
 
@@ -130,10 +127,6 @@ autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
-
-" Force redraw for lighline (Cygwin issue)
-autocmd VimEnter * redraw
-
 let g:rbpt_max = 8
 let g:bold_parentheses = 0
 let g:rbpt_colorpairs = [
@@ -146,3 +139,7 @@ let g:rbpt_colorpairs = [
   \ ['196', 'DarkOrchid3'],
   \ ['44', 'firebrick3'],
   \ ]
+
+" Force redraw for lighline (Cygwin issue)
+autocmd VimEnter * redraw
+
