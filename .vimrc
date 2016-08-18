@@ -11,7 +11,7 @@
 
 call plug#begin()
 Plug 'itchyny/lightline.vim'
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'eapache/rainbow_parentheses.vim'
 Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-sleuth'
 Plug 'ervandew/supertab'
@@ -134,22 +134,15 @@ autocmd Syntax * RainbowParenthesesLoadBraces
 " Force redraw for lighline (Cygwin issue)
 autocmd VimEnter * redraw
 
+let g:rbpt_max = 8
+let g:bold_parentheses = 0
 let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-
+  \ ['208', 'RoyalBlue3'],
+  \ ['39', 'SeaGreen3'],
+  \ ['46', 'DarkOrchid3'],
+  \ ['199', 'firebrick3'],
+  \ ['190', 'RoyalBlue3'],
+  \ ['92', 'SeaGreen3'],
+  \ ['196', 'DarkOrchid3'],
+  \ ['44', 'firebrick3'],
+  \ ]
