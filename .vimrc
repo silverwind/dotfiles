@@ -89,7 +89,7 @@ set visualbell
 set visualbell t_vb=
 set whichwrap+=<,>,h,l
 set wildchar=<TAB>
-set wildignore+=*~,*.o,,*.pyc,.git\*,.hg\*,.svn\*
+set wildignore+=*~,*.o,*.pyc,.git\*,.hg\*,.svn\*
 set wildmenu
 set wrap
 set wrapscan " Searches wrap around when reaching EOF
