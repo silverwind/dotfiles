@@ -5,10 +5,8 @@ DIR                   38;5;32
 DOOR                  38;5;127
 EXEC                  38;5;148;1
 FIFO                  38;5;126
-FILE                  38;5;253
 LINK                  target
 MULTIHARDLINK         38;5;220;1
-NORMAL                38;5;254
 ORPHAN                48;5;196;38;5;232;1
 OTHER_WRITABLE        38;5;178;1
 SETGID                38;5;137;1
