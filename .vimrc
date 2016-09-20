@@ -15,6 +15,7 @@ Plug 'eapache/rainbow_parentheses.vim'
 Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-sleuth'
 Plug 'ervandew/supertab'
+Plug 'scrooloose/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 set nocompatible
@@ -99,6 +100,9 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" remap <leader>
+let mapleader="-"
 
 " Return to last edit position when opening files
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
