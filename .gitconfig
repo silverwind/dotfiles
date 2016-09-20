@@ -1,3 +1,5 @@
+[include]
+	path = ~/.gitconfig.local
 [core]
 	legacyheaders = false
 	quotepath = false
@@ -40,6 +42,7 @@
 [diff]
 	renames = copies
 	algorithm = patience
+	compactionHeuristic = true
 [diff "bin"]
 	textconv = hexdump -v -C
 [credential]
@@ -53,8 +56,12 @@
 	default = current
 	followTags = true
 [alias]
+	c = commit -am
 	dif = diff
-	pushf = push --force-with-lease
+	p = push
+	pf = push --force-with-lease
+	s = status
+	sclone = clone --depth=1
 [remote "origin"]
 	fetch = +refs/pr/*/head:refs/remotes/origin/pr/*
 	fetch = +refs/tags/*:refs/tags/*
@@ -67,3 +74,5 @@
 	sslVerify = false
 [submodule]
 	fetchJobs = 0
+[fetch]
+	prune = true
