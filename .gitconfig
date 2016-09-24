@@ -60,8 +60,8 @@
 	dif = diff
 	p = push
 	pf = push --force-with-lease
-	s = status
-	sclone = clone --depth=1
+	st = status
+	sc = clone --depth=1
 [remote "origin"]
 	fetch = +refs/pr/*/head:refs/remotes/origin/pr/*
 	fetch = +refs/tags/*:refs/tags/*
