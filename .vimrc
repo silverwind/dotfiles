@@ -36,7 +36,7 @@ set complete-=i
 set copyindent
 set cursorline
 set encoding=utf-8
-set equalalways " Make all windows the same size when adding/removing windows
+set equalalways
 set expandtab
 set ffs=unix,dos,mac
 set foldmethod=marker
@@ -52,12 +52,11 @@ set listchars=tab:>-,trail:·,eol:$
 set magic
 set mat=2
 set nobackup
-set nobomb " Turn off the byte order mark
+set nobomb
 set noerrorbells
 set nofoldenable
 set noshowmode
 set noswapfile
-set notitle
 set novisualbell
 set nowritebackup
 set nrformats-=octal
@@ -79,7 +78,7 @@ set t_vb=
 set tabpagemax=50
 set tabstop=2
 set title
-set titleold= " Don't set the title to 'Thanks for flying Vim' when exiting
+set titleold=""
 set tm=500
 set ttimeout
 set ttimeoutlen=50
@@ -93,7 +92,7 @@ set wildchar=<TAB>
 set wildignore+=*~,*.o,*.pyc,.git\*,.hg\*,.svn\*
 set wildmenu
 set wrap
-set wrapscan " Searches wrap around when reaching EOF
+set wrapscan
 
 " Simpler split navigation
 nnoremap <C-J> <C-W><C-J>
