@@ -68,8 +68,6 @@
 [branch]
 	autosetupmerge = always
 	autosetuprebase = always
-[commit]
-	gpgsign = true
 [http]
 	sslVerify = false
 [submodule]
