@@ -74,3 +74,5 @@
 	fetchJobs = 0
 [fetch]
 	prune = true
+[tag]
+	sort = version:refname
