@@ -8,8 +8,8 @@ rm -rf ~/.vimrc
 rm -rf ~/.config/nvim
 
 # vim
-ln -s "$(pwd)/.vimrc" ~/.vimrc
-ln -s "$(pwd)/.vim" ~/.vim
+ln -s "$(pwd)/.vimrc" ~
+ln -s "$(pwd)/.vim" ~
 
 # nvim
 [ ! -d ~/.config ] mkdir ~/.config
