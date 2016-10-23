@@ -5,9 +5,6 @@
 "     +#+   +#+      +#+     +#+       +#+ +#+    +#+ +#+
 " #+#  #+#+#+#       #+#     #+#       #+# #+#    #+# #+#    #+#
 " ###    ###     ########### ###       ### ###    ###  ########
-"
-" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-" :PlugInstall
 
 call plug#begin()
 Plug 'itchyny/lightline.vim'
@@ -16,8 +13,10 @@ Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-sleuth'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdcommenter'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
+
 set nocompatible
 filetype plugin indent on
 colorscheme silverwind
@@ -94,24 +93,28 @@ set wildmenu
 set wrap
 set wrapscan
 
-" Simpler split navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
 " remap <leader>
 let mapleader="-"
-
-" Return to last edit position when opening files
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Treat long lines as break lines
 map j gj
 map k gk
 
+" CTRL+x deletes the current line
+map <C-X> dd
+
+" CTRL+d duplicates current line
+map <C-D> yyp
+
+" Alt+up/down moves the current line
+nmap <Esc><Down> <C-O>:m +1<CR>
+nmap <Esc><Up> <C-O>:m -2<CR>
+
 " :W does sudo save
 command! W w !sudo tee % > /dev/null
+
+" Return to last edit position when opening files
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
@@ -145,4 +148,3 @@ let g:rbpt_colorpairs = [
 
 " Force redraw for lighline (Cygwin issue)
 autocmd VimEnter * redraw
-
