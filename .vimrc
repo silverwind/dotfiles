@@ -148,3 +148,15 @@ let g:rbpt_colorpairs = [
 
 " Force redraw for lighline (Cygwin issue)
 autocmd VimEnter * redraw
+
+" Let cursor move through wrapped lines
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
