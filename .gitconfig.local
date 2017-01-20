@@ -1,0 +1,9 @@
+[user]
+  email = email
+  name = name
+  signingkey = signkey
+[github]
+  user = name
+  token = token
+[commit]
+  gpgsign = true
