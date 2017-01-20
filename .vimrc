@@ -50,6 +50,7 @@ set laststatus=2
 set listchars=tab:>-,trail:·,eol:$
 set magic
 set mat=2
+set mouse=""
 set nobackup
 set nobomb
 set noerrorbells
