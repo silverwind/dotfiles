@@ -12,7 +12,6 @@ Plug 'eapache/rainbow_parentheses.vim'
 Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-sleuth'
 Plug 'ervandew/supertab'
-Plug 'scrooloose/nerdcommenter'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
@@ -120,12 +119,6 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 " Remove trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
 
-" Auto reload .vimrc when editing
-augroup reload_vimrc
-    autocmd!
-    autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
-augroup END
-
 autocmd FileType Makefile set noexpandtab
 inoremap <C-U> <C-G>u<C-U>
 
@@ -148,7 +141,7 @@ let g:rbpt_colorpairs = [
   \ ]
 
 " Force redraw for lighline (Cygwin issue)
-autocmd VimEnter * redraw
+" autocmd VimEnter * redraw
 
 " Let cursor move through wrapped lines
 nnoremap j gj
@@ -161,3 +154,7 @@ vnoremap <Down> gj
 vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
+
+" CTRL-Space to enter/exit insert mode
+nnoremap <C-space> i
+imap <C-space> <Esc>
