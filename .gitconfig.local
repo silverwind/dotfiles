@@ -7,3 +7,5 @@
   token = https://github.com/settings/tokens
 [commit]
   gpgsign = true
+[tag]
+  gpgsign = true
