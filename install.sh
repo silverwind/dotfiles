@@ -18,7 +18,7 @@ DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 for file in "${files[@]}"; do
   rm -rf "$HOME/$file"
-  ln -s "$(pwd)/$file" "$HOME"
+  ln -s "$DIR/$file" "$HOME"
 done
 
 source "$DIR/install-vim.sh"

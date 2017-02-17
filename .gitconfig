@@ -43,6 +43,7 @@
 	renames = copies
 	algorithm = patience
 	compactionHeuristic = true
+	wsErrorHighlight = all
 [diff "bin"]
 	textconv = hexdump -v -C
 [credential]
