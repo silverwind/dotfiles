@@ -12,5 +12,5 @@ insert_final_newline = true
 [*.svg]
 insert_final_newline = false
 
-[Makefile,.gitconfig*]
+[{Makefile,.gitconfig,.gitconfig.local}]
 indent_style = tab
