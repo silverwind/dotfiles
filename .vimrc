@@ -106,10 +106,6 @@ map <C-X> dd
 " CTRL+d duplicates current line
 map <C-D> yyp
 
-" Alt+up/down moves the current line
-nmap <Esc><Down> <C-O>:m +1<CR>
-nmap <Esc><Up> <C-O>:m -2<CR>
-
 " :W does sudo save
 command! W w !sudo tee % > /dev/null
 
