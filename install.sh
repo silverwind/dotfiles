@@ -24,8 +24,16 @@ declare -a files=(
 
 for file in "${files[@]}"; do
   rm -rf "$HOME/$file"
-  ln -s "$cwd/$file" "$HOME"
+  cp -ra "$cwd/$file" "$HOME"
 done
+
+###############################################################################
+# create sample .gitconfig.local if it doesn't exist
+###############################################################################
+
+if [ ! -f "$HOME/.gitconfig.local" ] && [ ! -l "$HOME/.gitconfig.local" ]; then
+  cp -ra "$cwd/.gitconfig.local" "$HOME"
+fi
 
 ###############################################################################
 # vim / nvim
@@ -37,12 +45,12 @@ rm -rf "$HOME/.vimrc"
 rm -rf "$HOME/.config/nvim"
 
 # vim
-ln -s "$cwd/.vimrc" "$HOME"
-ln -s "$cwd/.vim" "$HOME"
+cp -ra "$cwd/.vimrc" "$HOME"
+cp -ra "$cwd/.vim" "$HOME"
 
 # nvim
 mkdir -p "$HOME/.config"
-ln -s "$cwd/.vim" "$HOME/.config/nvim"
+cp -ra "$cwd/.vim" "$HOME/.config/nvim"
 
 # get plug
 curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
