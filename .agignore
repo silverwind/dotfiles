@@ -1,2 +1,4 @@
 *.min.js
 *.min.css
+*.pack.js
+node_modules
