@@ -24,7 +24,7 @@ declare -a files=(
 
 for file in "${files[@]}"; do
   rm -rf "$HOME/$file"
-  if [ $(uname -o) = "Cygwin" ]; then
+  if [ -f /usr/bin/cygwin1.dll ]; then
     cp -Ra "$cwd/$file" "$HOME"
   else
     ln -s "$cwd/$file" "$HOME"
@@ -49,7 +49,7 @@ rm -rf "$HOME/.vimrc"
 rm -rf "$HOME/.config/nvim"
 
 # vim
-if [ $(uname -o) = "Cygwin" ]; then
+if [ -f /usr/bin/cygwin1.dll ]; then
   cp -Ra "$cwd/.vimrc" "$HOME"
   cp -Ra "$cwd/.vim" "$HOME"
 else
@@ -59,7 +59,7 @@ fi
 
 # nvim
 mkdir -p "$HOME/.config"
-if [ $(uname -o) = "Cygwin" ]; then
+if [ -f /usr/bin/cygwin1.dll ]; then
   cp -Ra "$cwd/.vim" "$HOME/.config/nvim"
 else
   ln -s "$cwd/.vim" "$HOME/.config/nvim"
