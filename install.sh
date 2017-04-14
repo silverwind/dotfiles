@@ -9,6 +9,7 @@ set -x
 cwd="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 declare -a files=(
+  .agignore
   .dircolors
   .editorconfig
   .eslintrc
