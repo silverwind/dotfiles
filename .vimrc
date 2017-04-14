@@ -10,7 +10,6 @@ call plug#begin()
 Plug 'itchyny/lightline.vim'
 Plug 'eapache/rainbow_parentheses.vim'
 Plug 'Townk/vim-autoclose'
-Plug 'tpope/vim-sleuth'
 Plug 'ervandew/supertab'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'editorconfig/editorconfig-vim'
