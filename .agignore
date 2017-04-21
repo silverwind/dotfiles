@@ -1,3 +1,4 @@
+*.minicolors.min.js
 *.min.js
 *.min.css
 *.pack.js
