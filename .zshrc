@@ -13,8 +13,8 @@
 
 source ~/.zplug/init.zsh
 
-zplug "modules/history",                   from:prezto
 zplug "modules/completion",                from:prezto
+zplug "lib/history",                       from:oh-my-zsh
 zplug "plugins/history-substring-search",  from:oh-my-zsh, defer:2
 zplug "zsh-users/zsh-completions",         defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
