@@ -1,26 +1,30 @@
 #!/bin/bash
 
-###############################################################################
-# general dotfiles
-###############################################################################
-
 set -x
+
+###############################################################################
+# copy dotfiles
+###############################################################################
 
 cwd="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
+mkdir -p "$HOME/.zsh"
+mkdir -p "$HOME/.config/htop"
+
 declare -a files=(
+  .config/htop/.htoprc
   .agignore
   .dircolors
   .editorconfig
   .eslintrc
   .gitconfig
   .hgrc
-  .htoprc
   .hushlogin
   .inputrc
   .ls++.conf
   .curlrc
   .wgetrc
+  .zshrc
 )
 
 for file in "${files[@]}"; do
@@ -36,8 +40,16 @@ done
 # create sample .gitconfig.local if it doesn't exist
 ###############################################################################
 
-if [ ! -f "$HOME/.gitconfig.local" ] && [ ! -l "$HOME/.gitconfig.local" ]; then
+if [ ! -f "$HOME/.gitconfig.local" ]; then
   cp -Ra "$cwd/.gitconfig.local" "$HOME"
+fi
+
+###############################################################################
+# create empty .zshrc.local if it doesn't exist
+###############################################################################
+
+if [ ! -f "$HOME/.zshrc.local" ]; then
+  touch "$HOME/.zshrc.local"
 fi
 
 ###############################################################################
@@ -66,8 +78,22 @@ else
   ln -s "$cwd/.vim" "$HOME/.config/nvim"
 fi
 
-# get plug
+###############################################################################
+# install vim plug
+###############################################################################
+
 curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-# install plugins
-vim -c ":PlugInstall"
+###############################################################################
+# install zplug
+###############################################################################
+
+curl -sL --proto-redir -all,https https://zplug.sh/installer | zsh
+
+###############################################################################
+# finish
+###############################################################################
+
+echo -e 'Installation done!'
+echo -e ' 1. Run \e[31mvim -c ":PlugInstall"\e[0m to install vim plugins'
+echo -e ' 2. Restart your terminal to install zsh plugins'
