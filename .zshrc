@@ -15,10 +15,10 @@ source ~/.zplug/init.zsh
 
 zplug "modules/history",                   from:prezto
 zplug "modules/completion",                from:prezto
-zplug "zsh-users/zsh-completions",         defer:2
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "lib/termsupport",                   from:oh-my-zsh, defer:2
 zplug "plugins/history-substring-search",  from:oh-my-zsh, defer:2
+zplug "zsh-users/zsh-completions",         defer:2
+zplug "zsh-users/zsh-syntax-highlighting", defer:3
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
@@ -39,7 +39,7 @@ setopt prompt_subst
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*' formats "%{$fg[grey]%}%s %{$fg[blue]%}%b%{$reset_color%}%m%u%c%{$reset_color%}"
 precmd () { vcs_info }
-PS1='%{$fg[red]%}%n%{$fg[yellow]%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$fg[blue]%}$ %{$reset_color%}'
+PS1='%{$fg[red]%}%n%{$fg[yellow]%}@%{$fg[blue]%}%m %{$fg[green]%}%~ %{$fg[yellow]%}$ %{$reset_color%}'
 RPS1='%(?..%{$fg[red]%}%?%{$reset_color%} )${vcs_info_msg_0_}'
 
 #######################################################
