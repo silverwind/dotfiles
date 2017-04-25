@@ -65,17 +65,25 @@ bindkey '^X' kill-whole-line
 bindkey ' ' magic-space
 bindkey -M viins ' ' magic-space
 
-# map all possible home/end key escape sequences
+# bind all possible home/end/delete key escape sequences
 bindkey '\e[H' beginning-of-line # Cygwin
-bindkey '\e[F' end-of-line       # Cygwin
-bindkey "e[1~" beginning-of-line
-bindkey "e[4~" end-of-line
+bindkey "e[1~" beginning-of-line # OSX
+bindkey '^[OH' beginning-of-line  # Linux
 bindkey "e[7~" beginning-of-line
-bindkey "e[8~" end-of-line
 bindkey "eOH" beginning-of-line
+
+bindkey '\e[F' end-of-line       # Cygwin
+bindkey "^[[4~" end-of-line      # OSX
+bindkey '^[OF' end-of-line       # Linux
+bindkey "e[4~" end-of-line
+bindkey "e[8~" end-of-line
 bindkey "eOF" end-of-line
-bindkey '^[OH' beginning-of-line
-bindkey '^[OF' end-of-line
+
+bindkey "^[[3~" delete-char      # Cygwin
+bindkey "\e[3~" delete-char
+bindkey "^[3;5~" delete-char
+
+bindkey '^?' backward-delete-char
 
 #######################################################
 # zsh options
