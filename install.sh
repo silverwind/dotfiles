@@ -82,13 +82,17 @@ fi
 # install vim plug
 ###############################################################################
 
-curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
+  curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+fi
 
 ###############################################################################
 # install zplug
 ###############################################################################
 
-curl -sL --proto-redir -all,https https://zplug.sh/installer | zsh
+if [ ! -d "$HOME/.zplug" ]; then
+  curl -sL --proto-redir -all,https https://zplug.sh/installer | zsh
+fi
 
 ###############################################################################
 # finish
