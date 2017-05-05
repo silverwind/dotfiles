@@ -72,8 +72,10 @@ fi
 mkdir -p "$HOME/.config"
 if [ -f /usr/bin/cygwin1.dll ]; then
   cp -Ra "$cwd/.vim" "$HOME/.config/nvim"
+  cp -Ra "$cwd/.vimrc" "$HOME/.config/nvim/init.vim"
 else
   ln -s "$cwd/.vim" "$HOME/.config/nvim"
+  ln -s "$cwd/.vimrc" "$HOME/.config/nvim/init.vim"
 fi
 
 ###############################################################################
