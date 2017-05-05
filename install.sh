@@ -28,9 +28,9 @@ for file in "${files[@]}"; do
   mkdir -p $(dirname $HOME/$file)
   rm -rf "$HOME/$file"
   if [ -f /usr/bin/cygwin1.dll ]; then
-    cp -Ra "$cwd/$file" "$HOME"
+    cp -Ra "$cwd/$file" "$HOME/$file"
   else
-    ln -s "$cwd/$file" "$HOME"
+    ln -s "$cwd/$file" "$HOME/$file"
   fi
 done
 
