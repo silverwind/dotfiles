@@ -2,6 +2,16 @@
 
 set -x
 
+install () {
+  rm -rf "$2"
+  mkdir -p "$(dirname "$2")"
+  if [ -f /usr/bin/cygwin1.dll ]; then
+    cp -Ra "$1" "$2"
+  else
+    ln -s "$1" "$2"
+  fi
+}
+
 ###############################################################################
 # copy dotfiles
 ###############################################################################
@@ -21,17 +31,13 @@ declare -a files=(
   .ls++.conf
   .curlrc
   .wgetrc
+  .vim
+  .vimrc
   .zshrc
 )
 
 for file in "${files[@]}"; do
-  mkdir -p $(dirname $HOME/$file)
-  rm -rf "$HOME/$file"
-  if [ -f /usr/bin/cygwin1.dll ]; then
-    cp -Ra "$cwd/$file" "$HOME/$file"
-  else
-    ln -s "$cwd/$file" "$HOME/$file"
-  fi
+  install "$cwd/$file" "$HOME/$file"
 done
 
 ###############################################################################
@@ -51,32 +57,11 @@ if [ ! -f "$HOME/.zshrc.local" ]; then
 fi
 
 ###############################################################################
-# vim / nvim
+# nvim
 ###############################################################################
 
-# clean up
-rm -rf "$HOME/.vim"
-rm -rf "$HOME/.vimrc"
-rm -rf "$HOME/.config/nvim"
-
-# vim
-if [ -f /usr/bin/cygwin1.dll ]; then
-  cp -Ra "$cwd/.vimrc" "$HOME"
-  cp -Ra "$cwd/.vim" "$HOME"
-else
-  ln -s "$cwd/.vimrc" "$HOME"
-  ln -s "$cwd/.vim" "$HOME"
-fi
-
-# nvim
-mkdir -p "$HOME/.config"
-if [ -f /usr/bin/cygwin1.dll ]; then
-  cp -Ra "$cwd/.vim" "$HOME/.config/nvim"
-  cp -Ra "$cwd/.vimrc" "$HOME/.config/nvim/init.vim"
-else
-  ln -s "$cwd/.vim" "$HOME/.config/nvim"
-  ln -s "$cwd/.vimrc" "$HOME/.config/nvim/init.vim"
-fi
+install "$cwd/.vim" "$HOME/.config/nvim"
+install "$cwd/.vimrc" "$HOME/.config/nvim/init.vim"
 
 ###############################################################################
 # install vim plug
