@@ -8,9 +8,6 @@ set -x
 
 cwd="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-mkdir -p "$HOME/.zsh"
-mkdir -p "$HOME/.config/htop"
-
 declare -a files=(
   .config/htop/.htoprc
   .agignore
@@ -28,6 +25,7 @@ declare -a files=(
 )
 
 for file in "${files[@]}"; do
+  mkdir -p $(dirname $HOME/$file)
   rm -rf "$HOME/$file"
   if [ -f /usr/bin/cygwin1.dll ]; then
     cp -Ra "$cwd/$file" "$HOME"
