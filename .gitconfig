@@ -61,7 +61,7 @@
 [alias]
   a = commit --amend
 	c = commit -am
-	d = diff
+	d = !git diff --exit-code && git diff --cached
 	dif = diff
 	p = push -u
 	r = reset --soft HEAD~1
