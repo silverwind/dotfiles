@@ -25,6 +25,7 @@ declare -a files=(
   .editorconfig
   .eslintrc
   .gitconfig
+  .gitignore
   .hgrc
   .hushlogin
   .inputrc
