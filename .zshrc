@@ -180,6 +180,10 @@ findexec() {
   find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }
 
+# upgrade all pip packages
+alias pip3u="pip3 freeze --local |sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip3 install -U \1/p' |sh"
+alias pip2u="pip2 freeze --local |sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip2 install -U \1/p' |sh"
+
 #######################################################
 # command correction
 #######################################################
