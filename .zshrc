@@ -191,9 +191,38 @@ findexec() {
   find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }
 
-# upgrade all pip packages
+# Update all global pip packages
 alias pip3u="pip3 freeze --local |sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip3 install -U \1/p' |sh"
 alias pip2u="pip2 freeze --local |sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip2 install -U \1/p' |sh"
+
+# Update packages on various package managers
+u() {
+  set -x
+  if hash pacman &>/dev/null; then
+    sudo pacman -Syu --noconfirm
+  fi
+  if hash softwareupdate &>/dev/null; then
+    sudo softwareupdate -i -a;
+  fi
+  if hash brew &>/dev/null; then
+    brew update; brew upgrade; brew cleanup; brew linkapps; brew prune
+  fi
+  if hash npm &>/dev/null; then
+    npm update -g
+  fi
+  if hash yarn &>/dev/null; then
+    yarn global upgrade
+  fi
+  if hash rustup &>/dev/null; then
+    rustup update stable
+  fi
+  if hash pip2 &>/dev/null; then
+    pip2u;
+  fi
+  if hash pip3 &>/dev/null; then
+    pip3u;
+  fi
+}
 
 #######################################################
 # general aliases
