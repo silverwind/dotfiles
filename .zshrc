@@ -14,8 +14,6 @@
 source ~/.zplug/init.zsh
 
 zplug "modules/completion",                from:prezto
-zplug "lib/history",                       from:oh-my-zsh
-zplug "zsh-users/zsh-completions",         defer:2
 zplug "plugins/history-substring-search",  from:oh-my-zsh, defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
@@ -118,6 +116,19 @@ setopt REC_EXACT
 setopt GLOBSTAR_SHORT
 setopt DOT_GLOB
 
+# history options
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+setopt APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_NO_STORE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
+setopt SHARE_HISTORY
+
 setopt ALL_EXPORT
 
 #######################################################
@@ -185,28 +196,24 @@ alias pip3u="pip3 freeze --local |sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo
 alias pip2u="pip2 freeze --local |sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip2 install -U \1/p' |sh"
 
 #######################################################
-# command correction
+# general aliases
 #######################################################
 
 setopt CORRECT
 alias cd='nocorrect cd'
 alias cp='nocorrect cp -vr'
+alias find='noglob find'
+alias ftp='noglob ftp'
 alias gcc='nocorrect gcc'
 alias grep='nocorrect grep'
+alias history='fc -il 1'
 alias ln='nocorrect ln'
 alias man='nocorrect man'
 alias mkdir='nocorrect mkdir -p'
 alias mv='nocorrect mv'
-alias mysql='nocorrect mysql'
 alias rm='nocorrect rm -rfv'
-
-alias find='noglob find'
-alias ftp='noglob ftp'
-alias history='noglob history'
-alias locate='noglob locate'
 alias rsync='noglob rsync'
 alias scp='noglob scp'
-alias sftp='noglob sftp'
 
 #######################################################
 # terminal title with hostname, based on
