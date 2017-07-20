@@ -191,10 +191,6 @@ findexec() {
   find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }
 
-# Update all global pip packages
-alias pip2u="pip2 freeze --local |sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip2 install -U \1/p' |sh"
-alias pip3u="pip3 freeze --local |sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip3 install -U \1/p' |sh"
-
 # Update packages on various package managers
 u() {
   set -x
@@ -208,11 +204,7 @@ u() {
     brew update; brew upgrade; brew cleanup; brew linkapps; brew prune
   fi
   if hash npm &>/dev/null; then
-    if [[ "$OSTYPE" == linux* ]]; then
-      sudo npm update -g
-    else
-      npm update -g
-    fi
+    npm update -g
   fi
   if hash yarn &>/dev/null; then
     yarn global upgrade
@@ -222,16 +214,16 @@ u() {
   fi
   if hash pip2 &>/dev/null; then
     if [[ "$OSTYPE" == linux* ]]; then
-      sudo pip2u
+      sudo pip2 freeze --local | sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip2 install -U \1/p' | sudo sh
     else
-      pip2u
+      pip2 freeze --local | sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip2 install -U \1/p' | sh
     fi
   fi
   if hash pip3 &>/dev/null; then
     if [[ "$OSTYPE" == linux* ]]; then
-      sudo pip3u
+      sudo pip3 freeze --local | sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip3 install -U \1/p' | sudo sh
     else
-      pip3u
+      pip3 freeze --local | sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip3 install -U \1/p' | sh
     fi
   fi
 }
