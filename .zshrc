@@ -192,8 +192,8 @@ findexec() {
 }
 
 # Update all global pip packages
-alias pip3u="pip3 freeze --local |sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip3 install -U \1/p' |sh"
 alias pip2u="pip2 freeze --local |sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip2 install -U \1/p' |sh"
+alias pip3u="pip3 freeze --local |sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip3 install -U \1/p' |sh"
 
 # Update packages on various package managers
 u() {
@@ -202,13 +202,17 @@ u() {
     sudo pacman -Syu --noconfirm
   fi
   if hash softwareupdate &>/dev/null; then
-    sudo softwareupdate -i -a;
+    sudo softwareupdate -i -a
   fi
   if hash brew &>/dev/null; then
     brew update; brew upgrade; brew cleanup; brew linkapps; brew prune
   fi
   if hash npm &>/dev/null; then
-    npm update -g
+    if [[ "$OSTYPE" == linux* ]]; then
+      sudo npm update -g
+    else
+      npm update -g
+    fi
   fi
   if hash yarn &>/dev/null; then
     yarn global upgrade
@@ -217,10 +221,18 @@ u() {
     rustup update stable
   fi
   if hash pip2 &>/dev/null; then
-    pip2u;
+    if [[ "$OSTYPE" == linux* ]]; then
+      sudo pip2u
+    else
+      pip2u
+    fi
   fi
   if hash pip3 &>/dev/null; then
-    pip3u;
+    if [[ "$OSTYPE" == linux* ]]; then
+      sudo pip3u
+    else
+      pip3u
+    fi
   fi
 }
 
