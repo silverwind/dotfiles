@@ -21,6 +21,7 @@ cwd="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 declare -a files=(
   .config/htop/.htoprc
   .agignore
+  .curlrc
   .dircolors
   .editorconfig
   .eslintrc
@@ -30,10 +31,10 @@ declare -a files=(
   .hushlogin
   .inputrc
   .ls++.conf
-  .curlrc
-  .wgetrc
+  .mostrc
   .vim
   .vimrc
+  .wgetrc
   .zshrc
 )
 
