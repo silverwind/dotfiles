@@ -43,7 +43,8 @@ RPS1='%(?..%{$fg[red]%}%?%{$reset_color%} )${vcs_info_msg_0_}'
 # tweaks
 #######################################################
 
-if hash tabs &>/dev/null; then tabs -2; fi            # tab size 2
+if hash tabs &>/dev/null; then tabs -2 &>/dev/null; fi # tab size 2
+if hash setterm &>/dev/null; then setterm -regtabs &>/dev/null; fi # tab size 2 (compat)
 if hash nvim &>/dev/null; then alias vim ="nvim"; fi  # alias vim to nvim
 
 #######################################################
