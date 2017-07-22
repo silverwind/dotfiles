@@ -243,11 +243,17 @@ alias grep='nocorrect grep'
 alias history='fc -il 1'
 alias ln='nocorrect ln'
 alias man='nocorrect man'
+alias map="xargs -n1"
 alias mkdir='nocorrect mkdir -p'
 alias mv='nocorrect mv'
+alias path='echo -e ${PATH//:/\\n}'
 alias rm='nocorrect rm -rfv'
 alias rsync='noglob rsync'
 alias scp='noglob scp'
+
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+  alias "$method"="curl -iX '$method'"
+done
 
 #######################################################
 # terminal title with hostname, based on

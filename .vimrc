@@ -29,7 +29,12 @@ set background=dark
 set backspace=indent,eol,start
 set bs=2
 set cmdheight=1
+set modeline
+set modelines=4
+set exrc
+set secure
 set complete-=i
+set clipboard=unnamed
 set copyindent
 set cursorline
 set encoding=utf-8
@@ -45,7 +50,8 @@ set ignorecase
 set incsearch
 set lazyredraw
 set laststatus=2
-set listchars=tab:>-,trail:·,eol:$
+set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set list
 set magic
 set mat=2
 set mouse=""
@@ -65,6 +71,7 @@ set sessionoptions-=options
 set shiftwidth=2
 set showcmd
 set showmatch
+set scrolloff=3
 set sidescrolloff=5
 set smartcase
 set smartindent
