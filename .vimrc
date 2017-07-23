@@ -51,7 +51,6 @@ set incsearch
 set lazyredraw
 set laststatus=2
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-set list
 set magic
 set mat=2
 set mouse=""
