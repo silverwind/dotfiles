@@ -34,7 +34,6 @@ set modelines=4
 set exrc
 set secure
 set complete-=i
-set clipboard=unnamed
 set copyindent
 set cursorline
 set encoding=utf-8
