@@ -32,6 +32,7 @@ declare -a files=(
   .inputrc
   .ls++.conf
   .mostrc
+  .psqlrc
   .vim
   .vimrc
   .wgetrc
