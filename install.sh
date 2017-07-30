@@ -36,6 +36,7 @@ declare -a files=(
   .vim
   .vimrc
   .wgetrc
+  .yarnrc
   .zshrc
 )
 
