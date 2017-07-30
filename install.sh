@@ -76,6 +76,8 @@ if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
   curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 fi
 
+vim -c ':PlugInstall! | :q! | :q!'
+
 ###############################################################################
 # install zplug
 ###############################################################################
@@ -88,6 +90,4 @@ fi
 # finish
 ###############################################################################
 
-echo -e 'Installation done!'
-echo -e ' 1. Run \e[31mvim -c ":PlugInstall"\e[0m to install vim plugins'
-echo -e ' 2. Restart your terminal to install zsh plugins'
+echo -e "Installation done. Restart you shell to install zplug."
