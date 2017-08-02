@@ -76,7 +76,7 @@
 	autosetupmerge = always
 	autosetuprebase = always
 [http]
-	sslVerify = false
+	sslverify = false
 [submodule]
 	fetchJobs = 0
 [fetch]
