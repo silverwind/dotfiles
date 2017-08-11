@@ -204,28 +204,11 @@ u() {
   if hash brew &>/dev/null; then
     brew update; brew upgrade; brew cleanup; brew linkapps; brew prune
   fi
-  if hash npm &>/dev/null; then
-    npm update -g
-  fi
   if hash yarn &>/dev/null; then
     yarn global upgrade
   fi
   if hash rustup &>/dev/null; then
     rustup update stable
-  fi
-  if hash pip2 &>/dev/null; then
-    if [[ "$OSTYPE" == linux* ]]; then
-      sudo pip2 freeze --local | sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip2 install -U \1/p' | sudo sh
-    else
-      pip2 freeze --local | sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip2 install -U \1/p' | sh
-    fi
-  fi
-  if hash pip3 &>/dev/null; then
-    if [[ "$OSTYPE" == linux* ]]; then
-      sudo pip3 freeze --local | sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip3 install -U \1/p' | sudo sh
-    else
-      pip3 freeze --local | sed -rn 's/^([^=# \t\\][^ \t=]*)=.*/echo; echo Processing \1 ...; pip3 install -U \1/p' | sh
-    fi
   fi
 }
 
