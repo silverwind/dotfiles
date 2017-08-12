@@ -21,6 +21,8 @@ cwd="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 declare -a files=(
   .config/htop/.htoprc
   .agignore
+  .bashrc
+  .bash_profile
   .curlrc
   .dircolors
   .editorconfig
