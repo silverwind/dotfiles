@@ -218,7 +218,7 @@ u() {
 
 setopt CORRECT
 alias cd='nocorrect cd'
-alias cp='nocorrect cp -vr'
+alias cp='nocorrect cp -v -R'
 alias find='noglob find'
 alias ftp='noglob ftp'
 alias gcc='nocorrect gcc'
