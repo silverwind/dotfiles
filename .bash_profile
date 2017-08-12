@@ -11,10 +11,8 @@ export PS1="\[\e[31m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[34m\]\h\[\e[m\] \[\e[32m
 shopt -s cdspell
 shopt -s checkwinsize
 shopt -s cmdhist
-shopt -s dirspell
 shopt -s dotglob
 shopt -s extglob
-shopt -s globstar
 shopt -s histappend
 shopt -s hostcomplete
 shopt -s interactive_comments
