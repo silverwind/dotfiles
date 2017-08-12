@@ -1,6 +1,5 @@
 AllowBlinking=no
 Answerback=
-BackgroundColour=0,0,0
 BackspaceSendsBS=yes
 BoldAsColour=no
 BoldAsFont=no
@@ -22,3 +21,24 @@ ScrollbackLines=50000
 Scrollbar=none
 Term=xterm-256color
 Transparency=low
+
+# colors
+ForegroundColour=209,192,146
+BackgroundColour=8,8,8
+CursorColour=255,175,0
+Black=102,102,102
+BoldBlack=153,153,153
+Red=229,34,34
+BoldRed=229,34,34
+Green=166,227,45
+BoldGreen=166,227,45
+Yellow=252,149,30
+BoldYellow=252,149,30
+Blue=85,101,204
+BoldBlue=85,101,204
+Magenta=237,37,131
+BoldMagenta=237,37,131
+Cyan=103,217,240
+BoldCyan=103,217,240
+White=230,221,184
+BoldWhite=230,221,184
