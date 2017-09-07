@@ -160,3 +160,6 @@ inoremap <Up> <C-o>gk
 " CTRL-Space to enter/exit insert mode
 nnoremap <C-space> i
 imap <C-space> <Esc>
+
+" disable nvim block cursor
+set guicursor=
