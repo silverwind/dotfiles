@@ -64,6 +64,7 @@
 	c = commit -am
 	d = !git diff --exit-code && git diff --cached
 	dif = diff
+	git = !exec git
 	p = push -u
 	r = reset --soft HEAD~1
 	s = status
