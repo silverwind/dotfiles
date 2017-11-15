@@ -13,8 +13,9 @@
 
 source ~/.zplug/init.zsh
 
-zplug "plugins/history-substring-search",  defer:2, from:oh-my-zsh
+zplug "plugins/history-substring-search", defer:2, from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
+zplug "zsh-users/zsh-completions", defer:3
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
