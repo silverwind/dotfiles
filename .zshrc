@@ -255,18 +255,6 @@ ct() {
   pygmentize -O style=monokai -f console256 -g "$@"
 }
 
-# expand ... to ../..
-rationalise-dot() {
-  if [[ $LBUFFER = *.. ]]; then
-    LBUFFER+=/..
-  else
-    LBUFFER+=.
-  fi
-}
-zle -N rationalise-dot
-bindkey . rationalise-dot
-bindkey -M isearch . self-insert
-
 # finds files and executes a command on them
 findexec() {
   find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
