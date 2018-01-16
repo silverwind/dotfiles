@@ -60,7 +60,7 @@
 	default = current
 	followTags = true
 [alias]
-  a = commit --amend
+	a = commit --amend
 	c = commit -am
 	d = !git diff --exit-code && git diff --cached
 	dif = diff
