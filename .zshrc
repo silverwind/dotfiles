@@ -245,6 +245,11 @@ elif [[ "$OSTYPE" == linux* ]]; then
   fi
 fi
 
+# banish files from git history
+grem() {
+  git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $@" --prune-empty --tag-name-filter cat -- --all
+}
+
 # create a directory and cd into it
 md() {
   mkdir -p "$@" && cd "$@"
