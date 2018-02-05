@@ -53,8 +53,11 @@ alias ll='ls -la'
 alias l='ll'
 alias grep='grep --color=auto -i'
 alias rm='rm -vR'
-alias ..='cd..'
-alias ...='cd...'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
 
 #######################################################
 # source .bash_profile.local

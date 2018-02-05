@@ -305,6 +305,11 @@ alias mv='nocorrect mv'
 alias path='echo -e ${PATH//:/\\n}'
 alias rm='nocorrect rm -rfv'
 alias rsync='noglob rsync'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
 
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
   alias "$method"="curl -iX '$method'"
