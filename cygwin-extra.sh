@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -euxo pipefail
 
 if [[ "$OSTYPE" != "cygwin" ]]; then
   echo "This script should only run on 'cygwin', not '$OSTYPE'."
@@ -13,17 +13,14 @@ rm -f sudo.zip
 mv -f sudo.exe /usr/bin
 
 # sshpass
-git clone git://github.com/kevinburke/sshpass.git
+git clone https://github.com/kevinburke/sshpass
 cd sshpass
+cp README.md README
 ./configure
 make
 make install
-
-# netcat
-git clone https://github.com/solrex/netcat
-cd netcat
-bash build.sh
+cd ..
+rm -rf sshpass
 
 # apt-cyg
-lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg > apt-cyg
-install apt-cyg /bin
+install <(curl -s https://raw.githubusercontent.com/transcode-open/apt-cyg/master/apt-cyg) /bin
