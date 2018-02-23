@@ -83,8 +83,8 @@ set tabstop=2
 set title
 set titleold=""
 set tm=500
-set ttimeout
-set ttimeoutlen=50
+set timeoutlen=0
+set ttimeoutlen=0
 set ttyfast
 set undolevels=1000
 set virtualedit=block
