@@ -88,6 +88,9 @@ bindkey '^?' backward-delete-char
 # zsh options
 #######################################################
 
+# reduce key timeout to .1s
+export KEYTIMEOUT=1
+
 unsetopt ALL_EXPORT
 
 setopt AUTO_CD              # Auto changes to a directory without typing cd.
