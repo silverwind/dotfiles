@@ -180,7 +180,7 @@ STICKY_OTHER_WRITABLE 38;5;220;1
 .afm                  38;5;58
 .pfb                  38;5;58
 .pfm                  38;5;58
-.ttf                  48;5;1
+.ttf                  38;5;43
 .pcf                  38;5;65
 .psf                  38;5;64
 
