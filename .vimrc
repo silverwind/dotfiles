@@ -55,7 +55,6 @@ set mat=2
 set mouse=""
 set nobackup
 set nobomb
-set noesckeys
 set noerrorbells
 set nofoldenable
 set noshowmode
