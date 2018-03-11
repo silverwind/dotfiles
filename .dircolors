@@ -95,6 +95,7 @@ STICKY_OTHER_WRITABLE 38;5;220;1
 .viminfo              38;5;240;1
 .xml                  38;5;199
 .yml                  38;5;208
+.yaml                 38;5;208
 .zsh                  38;5;173
 
 # Build stuff
