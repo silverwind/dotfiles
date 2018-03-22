@@ -117,7 +117,7 @@ setopt NOTIFY
 setopt PUSHD_MINUS
 setopt RC_QUOTES
 setopt REC_EXACT
-setopt GLOBSTAR_SHORT
+setopt GLOBSTAR_SHORT &> /dev/null
 setopt DOT_GLOB
 
 # history options
