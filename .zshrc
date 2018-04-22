@@ -51,6 +51,9 @@ if hash nvim &>/dev/null; then alias vim="nvim"; fi  # alias vim to nvim
 # key bindings
 #######################################################
 
+autoload -U compinit
+compinit
+
 if zplug check plugins/history-substring-search; then
   bindkey '\eOA' history-substring-search-up
   bindkey '\eOB' history-substring-search-down
@@ -66,13 +69,13 @@ bindkey -M viins ' ' magic-space
 
 # bind all possible home/end/delete key escape sequences
 bindkey '\e[H' beginning-of-line # Cygwin
-bindkey "e[1~" beginning-of-line # OSX
-bindkey '^[OH' beginning-of-line  # Linux
+bindkey "e[1~" beginning-of-line # macOS
+bindkey '^[OH' beginning-of-line # Linux
 bindkey "e[7~" beginning-of-line
 bindkey "eOH" beginning-of-line
 
 bindkey '\e[F' end-of-line       # Cygwin
-bindkey "^[[4~" end-of-line      # OSX
+bindkey "^[[4~" end-of-line      # macOS
 bindkey '^[OF' end-of-line       # Linux
 bindkey "e[4~" end-of-line
 bindkey "e[8~" end-of-line
@@ -112,7 +115,6 @@ setopt COMPLETE_IN_WORD
 setopt GLOB_DOTS
 setopt LONG_LIST_JOBS
 setopt MAIL_WARNING
-setopt MENU_COMPLETE
 setopt NOTIFY
 setopt PUSHD_MINUS
 setopt RC_QUOTES
@@ -152,76 +154,49 @@ fi
 # completion - based on zprezto
 #######################################################
 
-setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
 setopt ALWAYS_TO_END       # Move cursor to the end of a completed word.
-setopt PATH_DIRS           # Perform path search even on command names with slashes.
-setopt AUTO_MENU           # Show completion menu on a successive tab press.
-setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
-setopt AUTO_PARAM_SLASH    # If completed parameter is a directory, add a trailing slash.
-setopt EXTENDED_GLOB       # Needed for file modification glob modifiers with compinit
-unsetopt MENU_COMPLETE     # Do not autoselect the first completion entry.
+setopt MENU_COMPLETE       # Auio-select first match
 unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor.
 
-# Load and initialize the completion system ignoring insecure directories with a
-# cache time of 20 hours, so it should almost always regenerate the first time a
-# shell is opened each day.
-autoload -Uz compinit
-_comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))
-if (( $#_comp_files )); then
-  compinit -i -C
-else
-  compinit -i
-fi
-unset _comp_files
-
-# Use caching to make completion for commands such as dpkg and apt usable.
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
 
-# Case-insensitive (all), partial-word, and then substring completion.
-if zstyle -t ':prezto:module:completion:*' case-sensitive; then
-  zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-  setopt CASE_GLOB
-else
-  zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-  unsetopt CASE_GLOB
-fi
-
-# Group matches and describe.
-zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*' completer _complete _ignored _approximate
+zstyle ':completion:*' rehash true # Automatically update PATH entries
+zstyle ':completion:*' menu select
+zstyle ':completion:*' verbose true
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-dirs-first true
+zstyle ':completion:*' accept-exact-dirs true
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' show-completer true # Show which completer is currently running
+zstyle ':completion:*' single-ignored show
+zstyle ':completion:*' users off
+zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
+zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3)) numeric)'
+zstyle ':completion:*:*:cd:*:directory-stack' force-list always
+zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
 zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
 zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
 zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
 zstyle ':completion:*:default' list-prompt '%S%M matches%s'
-zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*' hosts off
-
-# Fuzzy match mistyped completions.
-zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*:match:*' original only
-zstyle ':completion:*:approximate:*' max-errors 1 numeric
-
-# Increase the number of errors based on the length of the typed word. But make
-# sure to cap (at 7) the max-errors to avoid hanging.
-zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3>7?7:($#PREFIX+$#SUFFIX)/3))numeric)'
-
-# Don't complete unavailable commands.
+zstyle ':completion:*:*:*:*:processes' force-list always
+zstyle ':completion:*:*:*:*:processes' menu yes select
+zstyle ':completion:*:*:*:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,args -w -w"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle -e ':completion:*' hosts 'reply=()'
 zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
 
-# Array completion element sorting.
-zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
-
-# Directories
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack
-zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
-zstyle ':completion:*' squeeze-slashes true
+# use ~/.ssh/known_hosts for hostname completion
+[ -r ~/.ssh/known_hosts ] && _ssh_hosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[\|]*}%%\ *}%%,*}) || _ssh_hosts=()
+hosts=( "$_ssh_hosts[@]" localhost )
+zstyle ':completion:*:hosts' hosts $hosts
 
 #######################################################
 # useful functions/aliases
