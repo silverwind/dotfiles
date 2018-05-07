@@ -163,7 +163,7 @@ zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
 
 zstyle ':completion:*' completer _complete _ignored _approximate
 zstyle ':completion:*' rehash true # Automatically update PATH entries
-zstyle ':completion:*' menu select
+zstyle ':completion:*' menu select=0
 zstyle ':completion:*' verbose true
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' list-dirs-first true
@@ -172,6 +172,7 @@ zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' show-completer true # Show which completer is currently running
 zstyle ':completion:*' single-ignored show
 zstyle ':completion:*' users off
+zstyle ':completion:*' special-dirs ..
 zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':completion:*:options' description 'yes'
@@ -179,13 +180,15 @@ zstyle ':completion:*:options' auto-description '%d'
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3)) numeric)'
 zstyle ':completion:*:*:cd:*:directory-stack' force-list always
 zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
+zstyle ':completion:*:correct:*' insert-unambiguous true
 zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
 zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
 zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
 zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 zstyle ':completion:*:match:*' original only
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*:-command-:*:' verbose false
 zstyle ':completion:*:*:*:*:processes' force-list always
 zstyle ':completion:*:*:*:*:processes' menu yes select
 zstyle ':completion:*:*:*:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
