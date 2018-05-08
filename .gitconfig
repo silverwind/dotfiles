@@ -8,6 +8,8 @@
 	pager = cat
 	logAllRefUpdates = true
 	excludesfile = ~/.gitignore
+	eol = lf
+	autocrlf = input
 [repack]
 	usedeltabaseoffset = true
 [merge]
