@@ -9,7 +9,7 @@
 	logAllRefUpdates = true
 	excludesfile = ~/.gitignore
 	eol = lf
-	autocrlf = input
+	autocrlf = false
 [repack]
 	usedeltabaseoffset = true
 [merge]
