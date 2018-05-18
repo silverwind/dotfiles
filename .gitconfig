@@ -49,6 +49,7 @@
 	algorithm = patience
 	compactionHeuristic = true
 	wsErrorHighlight = all
+	context = 4
 [diff "bin"]
 	textconv = hexdump -v -C
 [credential]
