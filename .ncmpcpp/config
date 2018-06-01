@@ -1,39 +1,31 @@
 mpd_music_dir = "~/music"
 mpd_crossfade_time = "5"
-##### song format #####
+progressbar_look = "─⊙╶"
+ignore_leading_the = "yes"
+mouse_support = "no"
+use_console_editor = "yes"
+playlist_disable_highlight_delay = 0
+seek_time = 2
+display_bitrate = "yes"
+clock_display_seconds = "yes"
+external_editor = "vim"
+
+current_item_prefix = "$(red)$r"
+current_item_suffix = "$/r$(end)"
+current_item_inactive_column_prefix = "$(green)$r"
+current_item_inactive_column_suffix = "$(white)$r"
 song_list_format = "{$5%a $9}{$2%t$9}|{$7%f$9}$7$R{%b }{$3%4l$9}$9"
 song_status_format = "$1{{$5%a$9{ $7%b$9{ $2%t$9}} }{($4%y$9)}}|{$7%f$9}$9"
 song_library_format = "{$3%n $9}{$2%t$9}|{$7%f$9}"
 song_window_title_format = "{%a - }{%t}{ (%b)}|{%f} {[%l]}"
+song_columns_list_format = "(25)[blue]{ar} (40)[red]{t|f} (35)[yellow]{br} (4f)[green]{lr}"
 
-##### columns settings #####
-song_columns_list_format = "(30)[blue]{a} (40)[red]{t|f} (30)[cyan]{br} (4f)[green]{lr}"
-
-##### various settings #####
-#progressbar_look = "━⊙"
-progressbar_look = "─⊙╶"
-
-#header_visibility = "no"
-#titles_visibility = "no"
-
-ignore_leading_the = "yes"
-mouse_support = "no"
-
-external_editor    = "vim"
-use_console_editor = "yes"
-
-##### colors definitions #####
-header_window_color            = "red"
-main_window_color              = "white"
-
-volume_color                   = "yellow"
-state_line_color               = "black"
-state_flags_color              = "red"
-
-progressbar_color              = "black"
-statusbar_color                = "green"
-
-#alternative_ui_separator_color = "black"
-main_window_highlight_color    = "red"
-active_column_color            = "green"
-window_border_color            = "red"
+header_window_color = "green"
+main_window_color = "red"
+volume_color = "yellow"
+state_line_color = "red"
+state_flags_color = "red"
+progressbar_color = "black"
+progressbar_elapsed_color = "green"
+statusbar_color = "green"
+window_border_color = "red"
