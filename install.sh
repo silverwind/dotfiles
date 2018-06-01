@@ -35,6 +35,7 @@ declare -a files=(
   .ls++.conf
   .mostrc
   .minttyrc
+  .ncmpcpp
   .npmrc
   .psqlrc
   .vim
