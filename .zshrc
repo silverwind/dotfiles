@@ -319,6 +319,33 @@ precmd_functions+=(title)           # Runs before showing the prompt
 preexec_functions+=(title_preexec)  # Runs before executing the command
 
 #######################################################
+# pager
+#######################################################
+
+less_opts=(
+  "--quit-if-one-screen"
+  "--ignore-case"
+  "--RAW-CONTROL-CHARS"
+  "--quiet"
+  "--dumb"
+  "--status-column"
+  "--tabs=2"
+  "-Ps%f (%lt) ?e(END):%pB\%."
+)
+export LESS="${less_opts[*]}"
+
+export LESS_TERMCAP_mb=$'\E[1;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\E[1;33m'       # begin bold
+export LESS_TERMCAP_us=$'\E[1;31m'       # begin underline
+export LESS_TERMCAP_so=$'\E[1;30m'       # begin standout-mode - info box
+export LESS_TERMCAP_me=$'\E[0m'          # end mode
+export LESS_TERMCAP_ue=$'\E[0m'          # end underline
+export LESS_TERMCAP_se=$'\E[0m'          # end standout-mode
+
+export PAGER='less'
+export MANPAGER='less -s -M +Gg'
+
+#######################################################
 # source .zshrc.local
 #######################################################
 
