@@ -49,6 +49,22 @@ for file in "${files[@]}"; do
   install "$cwd/$file" "$HOME/$file"
 done
 
+# install selected files into $USERPROFILE
+declare -a winfiles=(
+  .npmrc
+  .yarnrc
+  .eslintrc
+  .gitconfig
+  .gitignore
+)
+
+if [ -f /usr/bin/cygwin1.dll ]; then
+  winhome=$(cygpath $USERPROFILE)
+  for file in "${winfiles[@]}"; do
+    install "$cwd/$file" "$winhome/$file"
+  done
+fi
+
 ###############################################################################
 # create sample .gitconfig.local if it doesn't exist
 ###############################################################################
