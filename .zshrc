@@ -259,8 +259,8 @@ u() {
   if hash brew &>/dev/null; then
     brew update; brew upgrade; brew cleanup; brew linkapps; brew prune
   fi
-  if hash yarn &>/dev/null; then
-    yarn global upgrade
+  if hash npm &>/dev/null; then
+    npm update -g
   fi
   if hash rustup &>/dev/null; then
     rustup update stable
