@@ -1,13 +1,17 @@
+# Settings ✔
 AllowBlinking=no
 Answerback=
 BackspaceSendsBS=yes
 BoldAsColour=no
 BoldAsFont=no
 Charset=UTF-8
+ClicksTargetApp=no
+ClipShortcuts=no
 Columns=120
 ConfirmExit=no
-CopyAsRTF=no
+CopyAsRTF=yes
 CtrlShiftShortcuts=yes
+DeleteSendsDEL=yes
 Font=Monaco
 FontHeight=20
 FontSmoothing=full
@@ -19,8 +23,13 @@ RightClickAction=paste
 Rows=40
 ScrollbackLines=500000
 Scrollbar=none
+ShowHiddenFonts=yes
 Term=xterm-256color
 Transparency=low
+HideMouse=false
+Utmp=yes
+Charwidth=unicode
+Emojis=apple
 
 # Colors
 ForegroundColour=209,192,146
