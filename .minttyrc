@@ -11,7 +11,7 @@ Columns=120
 ConfirmExit=no
 CopyAsRTF=yes
 CtrlShiftShortcuts=yes
-DeleteSendsDEL=yes
+DeleteSendsDEL=no
 Font=Monaco
 FontHeight=20
 FontSmoothing=full
@@ -30,6 +30,7 @@ HideMouse=false
 Utmp=yes
 Charwidth=unicode
 Emojis=apple
+SelectionShowSize=0
 
 # Colors
 ForegroundColour=209,192,146
