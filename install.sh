@@ -26,7 +26,6 @@ declare -a files=(
   .curlrc
   .dircolors
   .editorconfig
-  .eslintrc
   .gitconfig
   .gitignore
   .hgrc
