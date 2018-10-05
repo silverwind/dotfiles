@@ -37,6 +37,7 @@ declare -a files=(
   .ncmpcpp
   .npmrc
   .psqlrc
+  .tmux.conf
   .vim
   .vimrc
   .wgetrc
@@ -103,6 +104,12 @@ vim -c ':PlugInstall! | :q! | :q!'
 
 rm -rf $HOME/.zplug
 curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+
+###############################################################################
+# install tpm
+###############################################################################
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ###############################################################################
 # finish
