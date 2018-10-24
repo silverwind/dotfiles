@@ -260,7 +260,7 @@ u() {
     brew update; brew upgrade; brew cleanup; brew linkapps; brew prune
   fi
   if hash npm &>/dev/null; then
-    npm update -g
+    for pkg in $(npm -g outdated --parseable --depth=0 | cut -d: -f4); do npm -g install "$pkg"; done
   fi
   if hash rustup &>/dev/null; then
     rustup update stable
