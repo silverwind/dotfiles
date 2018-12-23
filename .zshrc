@@ -48,6 +48,12 @@ if hash setterm &>/dev/null; then setterm -regtabs 4 &>/dev/null; fi # tab size 
 if hash nvim &>/dev/null; then alias vim="nvim"; fi # alias vim to nvim
 if which umask &>/dev/null; then umask 022; fi # set umask
 
+if uname -r | grep -q Microsoft; then
+  export WSL="true"
+else
+  export WSL="false"
+fi
+
 #######################################################
 # key bindings
 #######################################################
