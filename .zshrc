@@ -45,7 +45,8 @@ RPS1='%(?..%{$fg[red]%}%?%{$reset_color%} )${vcs_info_msg_0_}'
 
 if hash tabs &>/dev/null; then tabs -4 &>/dev/null; fi # tab size
 if hash setterm &>/dev/null; then setterm -regtabs 4 &>/dev/null; fi # tab size (compat)
-if hash nvim &>/dev/null; then alias vim="nvim"; fi  # alias vim to nvim
+if hash nvim &>/dev/null; then alias vim="nvim"; fi # alias vim to nvim
+if which umask &>/dev/null; then umask 022; fi # set umask
 
 #######################################################
 # key bindings
