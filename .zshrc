@@ -263,6 +263,9 @@ u() {
   if hash softwareupdate &>/dev/null; then
     sudo softwareupdate -i -a
   fi
+  if hash apt &>/dev/null; then
+    sudo apt update; sudo apt -y upgrade; sudo apt -y autoremove
+  fi
   if hash brew &>/dev/null; then
     brew update; brew upgrade; brew cleanup; brew linkapps; brew prune
   fi
