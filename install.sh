@@ -109,7 +109,8 @@ curl -sL https://raw.githubusercontent.com/zplug/installer/master/installer.zsh 
 # install tpm
 ###############################################################################
 
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+rm -rf $HOME/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
 ###############################################################################
 # finish
