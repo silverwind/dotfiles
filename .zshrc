@@ -257,7 +257,9 @@ findexec() {
 # Update packages on various package managers
 u() {
   set -x
-  if hash pacman &>/dev/null; then
+  if hash yay &>/dev/null; then
+    yay -Syu --devel --timeupdate
+  elif hash pacman &>/dev/null; then
     sudo pacman -Syu --noconfirm
   fi
   if hash softwareupdate &>/dev/null; then
