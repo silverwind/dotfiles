@@ -75,7 +75,6 @@
 	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n 15
 [remote "origin"]
 	fetch = +refs/pr/*/head:refs/remotes/origin/pr/*
-	fetch = +refs/tags/*:refs/tags/*
 [branch]
 	autosetupmerge = always
 	autosetuprebase = always
@@ -85,5 +84,6 @@
 	fetchJobs = 0
 [fetch]
 	prune = true
+	tags = true
 [tag]
 	sort = version:refname
