@@ -13,3 +13,30 @@ toolbar[brighttext] .toolbaritem-combined-buttons > separator { display: none !i
 .titlebar-spacer[type="pre-tabs"], .titlebar-spacer[type="post-tabs"] { width: 15px !important;}
 #TabsToolbar { background: #222 !important;}
 .tabbrowser-tab {font-size: 13px !important;}
+
+/* scrollbar stuff, both old and new variant */
+* {
+  scrollbar-color: rgba(96,96,96,.4) transparent !important;
+  scrollbar-width: thin !important;
+}
+scrollbar {
+  -moz-appearance: none !important;
+  background: none !important;
+  position: relative !important;
+  border: none !important;
+  z-index: 102400 !important;
+}
+scrollbar thumb {
+  -moz-appearance: none !important;
+  border: none !important;
+  padding: 0 0 !important;
+  background: none !important;
+  border-radius: 0 !important;
+}
+scrollbar[orient="vertical"]   thumb { background: rgba(96,96,96,.4) !important; min-height: 5px !important; width: 5px  !important }
+scrollbar[orient="horizontal"] thumb { background: rgba(96,96,96,.4) !important; min-width:  5px !important; height: 5px !important }
+scrollbar[orient="vertical"]   thumb:hover, scrollbar[orient="vertical"] thumb:active   { background: #6af !important }
+scrollbar[orient="horizontal"] thumb:hover, scrollbar[orient="horizontal"] thumb:active { background: #6af !important }
+scrollbar[orient="vertical"]   { width: 5px !important; margin-left: -5px !important;  margin-right: 0 !important }
+scrollbar[orient="horizontal"] { height: 5px !important; margin-top: -5px !important; margin-bottom: 0 !important }
+scrollbar scrollbarbutton, scrollbar scrollcorner { display: none !important }
