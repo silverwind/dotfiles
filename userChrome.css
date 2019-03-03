@@ -1,0 +1,14 @@
+#go-button {display:none !important;}
+#star-button {display:none !important;}
+#pageActionButton { display: none !important;}
+.search-go-button {display:none !important;}
+.searchbar-engine-button {display:none !important;}
+.tab-close-button { display: none !important;}
+#main-window[inFullscreen=true] { padding-top: 0px !important; }
+.tabbrowser-tab:not([pinned]) { max-width: 140px !important; }
+.tabbrowser-tab:not([pinned]):not([fadein]) {max-width: 0.1px !important;}
+#urlbar, .searchbar-textbox { background: #222 !important;}
+#urlbar-search-splitter {min-width: 4px !important;}
+toolbar[brighttext] .toolbaritem-combined-buttons > separator { display: none !important;}
+.titlebar-spacer[type="pre-tabs"], .titlebar-spacer[type="post-tabs"] { width: 15px !important;}
+#TabsToolbar { background: #222 !important;}

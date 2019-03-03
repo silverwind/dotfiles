@@ -1,0 +1,3 @@
+@-moz-document url-prefix("about:blank"), url-prefix("about:newtab") {
+  * { background-color: #181818 !important; }
+}
