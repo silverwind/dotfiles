@@ -12,3 +12,4 @@
 toolbar[brighttext] .toolbaritem-combined-buttons > separator { display: none !important;}
 .titlebar-spacer[type="pre-tabs"], .titlebar-spacer[type="post-tabs"] { width: 15px !important;}
 #TabsToolbar { background: #222 !important;}
+.tabbrowser-tab {font-size: 13px !important;}
