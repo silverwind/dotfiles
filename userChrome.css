@@ -14,7 +14,7 @@ toolbar[brighttext] .toolbaritem-combined-buttons > separator { display: none !i
 #TabsToolbar { background: #222 !important;}
 .tabbrowser-tab {font-size: 13px !important;}
 #statuspanel-label {background: #222 !important; color: #eee !important; border-color: #444 !important; font-size: 13px !important;}
-findbar {font-size: 14px !important;}
+findbar *, #urlbar *, #searchbar *, #tabbrowser-tabs * {font-size: 14px !important;}
 
 /* scrollbar stuff, both old and new variant */
 * {
