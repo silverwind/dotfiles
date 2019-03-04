@@ -15,6 +15,8 @@ toolbar[brighttext] .toolbaritem-combined-buttons > separator { display: none !i
 .tabbrowser-tab {font-size: 13px !important;}
 #statuspanel-label {background: #222 !important; color: #eee !important; border-color: #444 !important; font-size: 13px !important;}
 findbar *, #urlbar *, #searchbar *, #tabbrowser-tabs * {font-size: 14px !important;}
+#identity-icon-labels {display: none !important;}
+#urlbar[pageproxystate="valid"] > #identity-box.verifiedIdentity {border-inline-end: none !important; margin-inline-end: 0 !important;}
 
 /* scrollbar stuff, both old and new variant */
 * {
