@@ -35,7 +35,7 @@ SuppressSGR=1,3,5,6
 Term=xterm-256color
 Transparency=low
 Utmp=yes
-WordChars=~_-=<>(){}[].:,;@$&#%!?`´+*/\|^
+WordChars=~_-=<>(){}.:,;@$&#%!?`´+*/\|^
 
 # Colors
 ForegroundColour=209,192,146
