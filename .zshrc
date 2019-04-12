@@ -7,6 +7,7 @@
 source ~/.zplug/init.zsh
 
 zplug "plugins/history-substring-search", defer:2, from:oh-my-zsh
+zplug "lib/termsupport", defer:2, from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 zplug "zsh-users/zsh-completions", defer:3
 
@@ -293,27 +294,6 @@ alias ......='cd ../../../../..'
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
   alias "$method"="curl -iX '$method'"
 done
-
-#######################################################
-# terminal title with hostname, based on
-# https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/termsupport.zsh
-#######################################################
-
-function title {
-  print -Pn "\e]0;${HOST}:%~\a"
-  print -Pn "\e]1;${HOST}:%~\a"
-  print -Pn "\e]2;${HOST}:%~\a"
-}
-
-function title_preexec {
-  # cmd name only, or if this is sudo or ssh, the next cmd
-  local CMD=${1[(wr)^(*=*|sudo|ssh|mosh|-*)]:gs/%/%%}
-  local LINE="${2:gs/%/%%}"
-  title '$CMD' '%100>...>$LINE%<<'
-}
-
-precmd_functions+=(title)           # Runs before showing the prompt
-preexec_functions+=(title_preexec)  # Runs before executing the command
 
 #######################################################
 # pager
