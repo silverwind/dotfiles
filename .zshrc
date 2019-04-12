@@ -1,11 +1,4 @@
 #!/usr/bin/env zsh
-#     ::::::::: ::::::::  :::    ::: :::::::::   ::::::::
-#          :+: :+:    :+: :+:    :+: :+:    :+: :+:    :+:
-#         +:+  +:+        +:+    +:+ +:+    +:+ +:+
-#        +#+   +#++:++#++ +#++:++#++ +#++:++#:  +#+
-#       +#+           +#+ +#+    +#+ +#+    +#+ +#+
-# #+#  #+#     #+#    #+# #+#    #+# #+#    #+# #+#    #+#
-# ### ######### ########  ###    ### ###    ###  ########
 
 #######################################################
 # zplug
@@ -200,11 +193,6 @@ zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,args -w 
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle -e ':completion:*' hosts 'reply=()'
 zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
-
-# use ~/.ssh/known_hosts for hostname completion
-[ -r ~/.ssh/known_hosts ] && _ssh_hosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[\|]*}%%\ *}%%,*}) || _ssh_hosts=()
-hosts=( "$_ssh_hosts[@]" localhost )
-zstyle ':completion:*:hosts' hosts $hosts
 
 #######################################################
 # useful functions/aliases
