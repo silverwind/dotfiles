@@ -255,7 +255,7 @@ u() {
     sudo apt update; sudo apt -y upgrade; sudo apt -y autoremove
   fi
   if hash brew &>/dev/null; then
-    brew update; brew upgrade; brew cleanup;
+    brew update; brew upgrade; brew cleanup; brew cask upgrade;
   fi
   if hash npm &>/dev/null; then
     for pkg in $(npm -g outdated --parseable --depth=0 | cut -d: -f4); do npm -g install "$pkg"; done
