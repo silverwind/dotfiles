@@ -38,8 +38,6 @@ declare -a files=(
   .npmrc
   .psqlrc
   .tmux.conf
-  .vim
-  .vimrc
   .wgetrc
   .yarnrc
   .zshrc
@@ -82,15 +80,19 @@ if [ ! -f "$HOME/.zshrc.local" ]; then
 fi
 
 ###############################################################################
-# nvim
+# nvim, vim, vim-plug
 ###############################################################################
+
+rm -rf "$HOME/.config/nvim"
 
 install "$cwd/.vim" "$HOME/.config/nvim"
 install "$cwd/.vimrc" "$HOME/.config/nvim/init.vim"
 
-###############################################################################
-# install vim plug
-###############################################################################
+rm -rf "$HOME/.vim"
+rm -rf "$HOME/.vimrc"
+
+install "$cwd/.vim" "$HOME/.vim"
+install "$cwd/.vimrc" "$HOME/.vimrc"
 
 if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
   curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
