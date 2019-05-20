@@ -73,8 +73,6 @@
 	s = status
 	sc = clone --depth=1
 	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n 15
-[remote "origin"]
-	fetch = +refs/pr/*/head:refs/remotes/origin/pr/*
 [branch]
 	autosetupmerge = always
 	autosetuprebase = always
