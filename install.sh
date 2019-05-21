@@ -19,10 +19,11 @@ install () {
 cwd="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 declare -a files=(
-  .config/htop/.htoprc
   .agignore
-  .bashrc
   .bash_profile
+  .bashrc
+  .cargo/config
+  .config/htop/.htoprc
   .curlrc
   .dircolors
   .editorconfig
@@ -32,8 +33,8 @@ declare -a files=(
   .hushlogin
   .inputrc
   .ls++.conf
-  .mostrc
   .minttyrc
+  .mostrc
   .ncmpcpp
   .npmrc
   .psqlrc
@@ -49,11 +50,12 @@ done
 
 # install selected files into $USERPROFILE
 declare -a winfiles=(
-  .npmrc
-  .yarnrc
+  .cargo/config
   .eslintrc
   .gitconfig
   .gitignore
+  .npmrc
+  .yarnrc
 )
 
 if [ -f /usr/bin/cygwin1.dll ]; then
