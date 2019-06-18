@@ -42,9 +42,16 @@ menupopup:not(.PanelUI-subView) {
   -moz-appearance: none !important;
   border: 1px solid #111 !important;
 }
+menuitem {
+  padding: 5px 0 !important;
+}
+menuitem:not([disabled]):hover {
+  color: #fff !important;
+}
 menuseparator {
   -moz-appearance: none !important;
-  background: #484848 !important;
+  background: none !important;
+  border: none !important;
 }
 #context-navigation {
   -moz-appearance: none !important;
