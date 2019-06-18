@@ -51,7 +51,8 @@ menuitem:not([disabled]):hover {
 menuseparator {
   -moz-appearance: none !important;
   background: none !important;
-  border: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
 }
 #context-navigation {
   -moz-appearance: none !important;
