@@ -258,7 +258,10 @@ u() {
     brew update; brew upgrade; brew cleanup; brew cask upgrade;
   fi
   if hash npm &>/dev/null; then
-    for pkg in $(npm -g outdated --parseable --depth=0 | cut -d: -f4); do npm -g install "$pkg"; done
+    tempfile="$(mktemp)"
+    npm -g outdated --parseable --depth=0 > "$tempfile"
+    for pkg in $(cat "$tempfile" | grep -oP ':(?:.(?!:))+$' | cut -c 2-); do npm -g install "$pkg"; done
+    rm "$tempfile"
   fi
   if hash rustup &>/dev/null; then
     rustup update stable
