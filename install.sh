@@ -36,7 +36,6 @@ declare -a files=(
   .minttyrc
   .mostrc
   .ncmpcpp
-  .npmrc
   .psqlrc
   .tmux.conf
   .wgetrc
@@ -66,16 +65,23 @@ if [ -f /usr/bin/cygwin1.dll ]; then
 fi
 
 ###############################################################################
-# create sample .gitconfig.local if it doesn't exist
+# create sample files if they doesn't exist
 ###############################################################################
 
 if [ ! -f "$HOME/.gitconfig.local" ]; then
   cp -Ra "$cwd/.gitconfig.local" "$HOME"
 fi
 
-###############################################################################
-# create empty .zshrc.local if it doesn't exist
-###############################################################################
+if [ ! -f "$HOME/.npmrc" ]; then
+  cp -Ra "$cwd/.npmrc" "$HOME"
+fi
+
+if [ -f /usr/bin/cygwin1.dll ]; then
+  winhome=$(cygpath $USERPROFILE)
+  if [ ! -f "$winhome/.npmrc" ]; then
+    cp -Ra "$cwd/.npmrc" "$winhome"
+  fi
+fi
 
 if [ ! -f "$HOME/.zshrc.local" ]; then
   touch "$HOME/.zshrc.local"
