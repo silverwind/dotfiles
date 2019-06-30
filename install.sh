@@ -53,7 +53,6 @@ declare -a winfiles=(
   .eslintrc
   .gitconfig
   .gitignore
-  .npmrc
   .yarnrc
 )
 
@@ -70,17 +69,6 @@ fi
 
 if [ ! -f "$HOME/.gitconfig.local" ]; then
   cp -Ra "$cwd/.gitconfig.local" "$HOME"
-fi
-
-if [ ! -f "$HOME/.npmrc" ]; then
-  cp -Ra "$cwd/.npmrc" "$HOME"
-fi
-
-if [ -f /usr/bin/cygwin1.dll ]; then
-  winhome=$(cygpath $USERPROFILE)
-  if [ ! -f "$winhome/.npmrc" ]; then
-    cp -Ra "$cwd/.npmrc" "$winhome"
-  fi
 fi
 
 if [ ! -f "$HOME/.zshrc.local" ]; then
