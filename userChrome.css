@@ -20,6 +20,7 @@ findbar *, #urlbar *, #searchbar *, #tabbrowser-tabs * {font-size: 14px !importa
 #identity-icon-labels {display: none !important;}
 #urlbar[pageproxystate="valid"] > #identity-box.verifiedIdentity {border-inline-end: none !important; margin-inline-end: 0 !important;}
 .searchbar-search-button {display: none !important;}
+.searchbar-textbox {padding-left: .5rem !important; padding-right: .5rem !important;}
 
 /* context menu */
 menu, menuitem {
