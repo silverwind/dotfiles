@@ -22,7 +22,7 @@ findbar *, #urlbar *, #searchbar *, #tabbrowser-tabs * {font-size: 14px !importa
 .searchbar-search-button {display: none !important;}
 .searchbar-textbox {padding-left: .5rem !important; padding-right: .5rem !important;}
 
-/* context menu */
+/* dark context menu */
 menu, menuitem {
   color: #ccc !important;
   -moz-appearance: none !important;
@@ -44,22 +44,16 @@ menupopup:not(.PanelUI-subView) {
   -moz-appearance: none !important;
   border: 1px solid #111 !important;
 }
-menuitem {
-  padding: 5px 0 !important;
-}
 menuitem:not([disabled]):hover {
   color: #fff !important;
 }
 menuseparator {
   -moz-appearance: none !important;
   background: none !important;
-  border-top: none !important;
-  border-bottom: none !important;
 }
 #context-navigation {
   -moz-appearance: none !important;
   background-color: #282828 !important;
-  padding-bottom: 0px !important;
 }
 
 /* scrollbar stuff, both old and new variant */
