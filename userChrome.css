@@ -26,6 +26,7 @@ findbar *, #urlbar *, #searchbar *, #tabbrowser-tabs * {font-size: 14px !importa
 menu, menuitem {
   color: #ccc !important;
   -moz-appearance: none !important;
+  padding: .35rem .5rem; /* padding needed on windows with -moz-appearance: none */
 }
 menubar > menu[_moz-menuactive="true"][disabled="true"],
 menupopup > menu[_moz-menuactive="true"][disabled="true"],
@@ -50,6 +51,7 @@ menuitem:not([disabled]):hover {
 menuseparator {
   -moz-appearance: none !important;
   background: none !important;
+  border-color: transparent !important;
 }
 #context-navigation {
   -moz-appearance: none !important;
