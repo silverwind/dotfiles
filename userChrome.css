@@ -58,6 +58,11 @@ menuseparator {
   background-color: #282828 !important;
 }
 
+/* remove white flash */
+#browser vbox#appcontent tabbrowser, #content, #tabbrowser-tabpanels, browser[type=content-primary], browser[type=content] > html {
+  background: #181818 !important;
+}
+
 /* scrollbar stuff, both old and new variant */
 * {
   scrollbar-color: rgba(96,96,96,.4) transparent !important;
