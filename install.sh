@@ -44,8 +44,6 @@ declare -a files=(
   .eslintrc
   .gitconfig
   .gitignore
-  .hgrc
-  .hushlogin
   .inputrc
   .ls++.conf
   .minttyrc
