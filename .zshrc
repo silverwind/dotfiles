@@ -240,34 +240,6 @@ findexec() {
   find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }
 
-# Update packages on various package managers
-u() {
-  set -x
-  if hash yay &>/dev/null; then
-    yay -Syu --devel --timeupdate
-  elif hash pacman &>/dev/null; then
-    sudo pacman -Syu --noconfirm
-  fi
-  if hash softwareupdate &>/dev/null; then
-    sudo softwareupdate -i -a
-  fi
-  if hash apt &>/dev/null; then
-    sudo apt update; sudo apt -y upgrade; sudo apt -y autoremove
-  fi
-  if hash brew &>/dev/null; then
-    brew update; brew upgrade; brew cleanup; brew cask upgrade;
-  fi
-  if hash npm &>/dev/null; then
-    tempfile="$(mktemp)"
-    npm -g outdated --parseable --depth=0 > "$tempfile"
-    for pkg in $(cat "$tempfile" | grep -oP ':(?:.(?!:))+$' | cut -c 2-); do npm -g install "$pkg"; done
-    rm "$tempfile"
-  fi
-  if hash rustup &>/dev/null; then
-    rustup update stable
-  fi
-}
-
 #######################################################
 # general aliases
 #######################################################
