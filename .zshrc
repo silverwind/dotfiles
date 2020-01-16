@@ -49,7 +49,7 @@ fi
 #######################################################
 
 autoload -U compinit
-compinit
+compinit -u
 
 if zplug check plugins/history-substring-search; then
   bindkey '\eOA' history-substring-search-up
