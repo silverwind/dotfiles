@@ -16,14 +16,23 @@ toolbar[brighttext] .toolbaritem-combined-buttons > separator { display: none !i
 #TabsToolbar { background: #222 !important;}
 .tabbrowser-tab {font-size: 13px !important;}
 #statuspanel-label {background: #222 !important; color: #eee !important; border-color: #444 !important; font-size: 13px !important;}
-tooltip {-moz-appearance: none !important; background: #222!important; color: #eee !important; border-color: #444 !important;]
 findbar *, #urlbar *, #searchbar *, #tabbrowser-tabs * {font-size: 14px !important;}
 #identity-icon-labels {display: none !important;}
 #urlbar[pageproxystate="valid"] > #identity-box.verifiedIdentity {border-inline-end: none !important; margin-inline-end: 0 !important;}
 .searchbar-search-button {display: none !important;}
 #searchbar {padding-left: .5rem !important; padding-right: .5rem !important;}
 
-/* dark context menu */
+/* tooltip */
+tooltip {
+  -moz-appearance: none !important;
+  background: #222 !important;
+  color: #eee !important;
+  border-color: #444 !important;
+  box-shadow: 0 0 0 1px #222 !important;
+  font-size: 12px !important;
+}
+
+/* context menu */
 menu, menuitem {
   color: #ccc !important;
   -moz-appearance: none !important;
