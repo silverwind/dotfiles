@@ -43,6 +43,7 @@ declare -a files=(
   .editorconfig
   .gitconfig
   .gitignore
+  .hushlogin
   .inputrc
   .ls++.conf
   .minttyrc
