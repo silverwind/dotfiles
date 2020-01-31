@@ -10,6 +10,7 @@
 	excludesfile = ~/.gitignore
 	eol = lf
 	autocrlf = false
+	commitGraph = true
 [repack]
 	usedeltabaseoffset = true
 [merge]
@@ -84,3 +85,5 @@
 	tags = true
 [tag]
 	sort = version:refname
+[gc]
+	writeCommitGraph = true
