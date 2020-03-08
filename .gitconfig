@@ -87,3 +87,5 @@
 	sort = version:refname
 [gc]
 	writeCommitGraph = true
+[am]
+	threeWay = true
