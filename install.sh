@@ -94,17 +94,6 @@ rm -rf "$HOME/.tmux/plugins/tpm"
 git clone "https://github.com/tmux-plugins/tpm" "$HOME/.tmux/plugins/tpm"
 
 ###############################################################################
-#  Firefox
-###############################################################################
-
-if [[ "$OSTYPE" == darwin* ]] && [ -d "$HOME/Library/Application Support/Firefox" ]; then
-  find "$HOME/Library/Application Support/Firefox/Profiles" -depth 1 -type d -exec basename {} \; | while read PROFILE; do
-    install "userChrome.css" "Library/Application Support/Firefox/Profiles/$PROFILE/chrome/userChrome.css"
-    install "userChrome.css" "Library/Application Support/Firefox/Profiles/$PROFILE/chrome/userContent.css"
-  done
-fi
-
-###############################################################################
 # finish
 ###############################################################################
 
