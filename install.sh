@@ -37,7 +37,7 @@ declare -a files=(
   .bash_profile
   .bashrc
   .cargo/config
-  .config/htop/.htoprc
+  .config/htop/htoprc
   .curlrc
   .dircolors
   .editorconfig
