@@ -7,6 +7,7 @@
 source ~/.zplug/init.zsh
 
 zplug "plugins/history-substring-search", defer:2, from:oh-my-zsh
+zplug "lib/functions", defer:2, from:oh-my-zsh
 zplug "lib/termsupport", defer:2, from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 zplug "zsh-users/zsh-completions", defer:3
