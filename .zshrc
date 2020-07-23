@@ -8,9 +8,9 @@ source ~/.zinit/bin/zinit.zsh
 
 zinit snippet https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/functions.zsh
 zinit snippet https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/termsupport.zsh
-zinit load zsh-users/zsh-history-substring-search
-zinit load zsh-users/zsh-syntax-highlighting
-zinit load zsh-users/zsh-completions
+zinit light zsh-users/zsh-history-substring-search
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
 
 #######################################################
 # prompt

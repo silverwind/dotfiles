@@ -85,11 +85,7 @@ vim -c ':PlugInstall! | :PlugUpdate! | :q! | :q!'
 
 rm -rf "$HOME/.zinit"
 mkdir "$HOME/.zinit"
-git clone "https://github.com/zdharma/zinit.git" "$HOME/.zinit/bin"
-
-# https://github.com/zdharma/zinit/issues/389
-cd "$HOME/.zinit/bin"
-git reset --hard 4582d9adfbe8e9f071e92fe65095bd24f0d8a2dd
+git clone --depth=1 "https://github.com/zdharma/zinit.git" "$HOME/.zinit/bin"
 
 ###############################################################################
 #  tpm
