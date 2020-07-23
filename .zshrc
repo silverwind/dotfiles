@@ -1,22 +1,16 @@
 #!/usr/bin/env zsh
 
 #######################################################
-# zplug
+# zinit
 #######################################################
 
-source ~/.zplug/init.zsh
+source ~/.zinit/bin/zinit.zsh
 
-zplug "plugins/history-substring-search", defer:2, from:oh-my-zsh
-zplug "lib/functions", defer:2, from:oh-my-zsh
-zplug "lib/termsupport", defer:2, from:oh-my-zsh
-zplug "zsh-users/zsh-syntax-highlighting", defer:3
-zplug "zsh-users/zsh-completions", defer:3
-
-if ! zplug check --verbose; then
-  zplug install
-fi
-
-zplug load
+zinit snippet https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/functions.zsh
+zinit snippet https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/termsupport.zsh
+zinit load zsh-users/zsh-history-substring-search
+zinit load zsh-users/zsh-syntax-highlighting
+zinit load zsh-users/zsh-completions
 
 #######################################################
 # prompt
@@ -46,12 +40,10 @@ if which umask &>/dev/null; then umask 022; fi # set umask
 autoload -U compinit
 compinit -u
 
-if zplug check plugins/history-substring-search; then
-  bindkey '\eOA' history-substring-search-up
-  bindkey '\eOB' history-substring-search-down
-  bindkey '^[[A' history-substring-search-up
-  bindkey '^[[B' history-substring-search-down
-fi
+bindkey '\eOA' history-substring-search-up
+bindkey '\eOB' history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line

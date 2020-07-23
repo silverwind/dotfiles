@@ -80,21 +80,26 @@ fi
 vim -c ':PlugInstall! | :PlugUpdate! | :q! | :q!'
 
 ###############################################################################
-# zplug
+# zinit
 ###############################################################################
 
-rm -rf "$HOME/.zplug"
-curl -sfL "https://raw.githubusercontent.com/zplug/installer/master/installer.zsh" | zsh
+rm -rf "$HOME/.zinit"
+mkdir "$HOME/.zinit"
+git clone "https://github.com/zdharma/zinit.git" "$HOME/.zinit/bin"
+
+# https://github.com/zdharma/zinit/issues/389
+cd "$HOME/.zinit/bin"
+git reset --hard 4582d9adfbe8e9f071e92fe65095bd24f0d8a2dd
 
 ###############################################################################
 #  tpm
 ###############################################################################
 
 rm -rf "$HOME/.tmux/plugins/tpm"
-git clone "https://github.com/tmux-plugins/tpm" "$HOME/.tmux/plugins/tpm"
+git clone --depth=1 "https://github.com/tmux-plugins/tpm" "$HOME/.tmux/plugins/tpm"
 
 ###############################################################################
 # finish
 ###############################################################################
 
-echo -e "Installation done. Restart you shell to install zplug."
+echo -e "Installation done. Restart you shell to install zinit."
