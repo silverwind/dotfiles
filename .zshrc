@@ -9,8 +9,12 @@ source ~/.zinit/bin/zinit.zsh
 zinit snippet https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/functions.zsh
 zinit snippet https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/termsupport.zsh
 zinit light zsh-users/zsh-history-substring-search
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
+
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions
 
 #######################################################
 # prompt
@@ -32,6 +36,9 @@ RPS1='%(?..%{$fg[red]%}%?%{$reset_color%} )${vcs_info_msg_0_}'
 if hash tabs &>/dev/null; then tabs -4 &>/dev/null; fi # tab size
 if hash setterm &>/dev/null; then setterm -regtabs 4 &>/dev/null; fi # tab size (compat)
 if which umask &>/dev/null; then umask 022; fi # set umask
+
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=none,fg=default'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=none,fg=default'
 
 #######################################################
 # key bindings
