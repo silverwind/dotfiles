@@ -36,7 +36,7 @@ RPS1='%(?..%{$fg[red]%}%?%{$reset_color%} )${vcs_info_msg_0_}'
 if hash tabs &>/dev/null; then tabs -4 &>/dev/null; fi # tab size
 if hash setterm &>/dev/null; then setterm -regtabs 4 &>/dev/null; fi # tab size (compat)
 if which umask &>/dev/null; then umask 022; fi # set umask
-if [[ "$OSTYPE" == darwin* ]]; then ulimit -n 12288; fi # increase ulimit on darwin
+if [[ "$OSTYPE" == darwin* ]]; then ulimit -n 12288; fi # increase open files limit on darwin
 
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=none,fg=default'
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=none,fg=default'
