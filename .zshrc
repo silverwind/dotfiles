@@ -9,12 +9,8 @@ source ~/.zinit/bin/zinit.zsh
 zinit snippet https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/functions.zsh
 zinit snippet https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/termsupport.zsh
 zinit light zsh-users/zsh-history-substring-search
-
-zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma/fast-syntax-highlighting \
- blockf \
-    zsh-users/zsh-completions
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
 
 #######################################################
 # prompt
