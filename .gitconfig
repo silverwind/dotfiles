@@ -79,6 +79,7 @@
 	autosetuprebase = always
 [http]
 	sslverify = false
+	followRedirects = true
 [submodule]
 	fetchJobs = 0
 [fetch]
