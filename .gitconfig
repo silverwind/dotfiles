@@ -11,6 +11,7 @@
 	eol = lf
 	autocrlf = false
 	commitGraph = true
+	ignorecase = false
 [repack]
 	usedeltabaseoffset = true
 [merge]
