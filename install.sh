@@ -42,7 +42,6 @@ declare -a files=(
   .dircolors
   .editorconfig
   .gitconfig
-  .gitignore
   .hushlogin
   .inputrc
   .ls++.conf

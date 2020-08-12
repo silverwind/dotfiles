@@ -2,16 +2,15 @@
 	path = ~/.gitconfig.local
 [core]
 	legacyheaders = false
-	quotepath = false
+	quotePath = false
 	trustctime = false
-	precomposeunicode = false
+	precomposeUnicode = false
 	pager = cat
 	logAllRefUpdates = true
-	excludesfile = ~/.gitignore
 	eol = lf
 	autocrlf = false
 	commitGraph = true
-	ignorecase = false
+	ignoreCase = false
 [repack]
 	usedeltabaseoffset = true
 [merge]
