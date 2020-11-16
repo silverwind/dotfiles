@@ -100,3 +100,5 @@
 	required = true
 [init]
 	defaultBranch = master
+[receive]
+	advertisePushOptions = true
