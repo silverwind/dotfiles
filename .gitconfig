@@ -5,7 +5,7 @@
 	quotePath = false
 	trustctime = false
 	precomposeUnicode = false
-	pager = delta --color-only --diff-so-fancy --paging=never --hyperlinks
+	pager = cat
 	logAllRefUpdates = true
 	eol = lf
 	autocrlf = false
