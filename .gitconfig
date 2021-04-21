@@ -21,6 +21,7 @@
 	autocorrect = 1
 [rerere]
 	enabled = true
+	autoUpdate = true
 [color]
 	diff = auto
 	status = auto
@@ -87,6 +88,8 @@
 [fetch]
 	prune = true
 	tags = true
+	recurseSubmodules = true
+	parallel = 0
 [tag]
 	sort = version:refname
 [gc]
@@ -102,3 +105,5 @@
 	defaultBranch = master
 [receive]
 	advertisePushOptions = true
+[clone]
+	defaultRemoteName = origin
