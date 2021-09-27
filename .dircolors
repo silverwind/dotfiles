@@ -221,6 +221,7 @@ STICKY_OTHER_WRITABLE 38;5;220;1
 .JPG                  38;5;97
 .jpg                  38;5;97
 .js                   38;5;42
+.jsx                  38;5;42
 .jsm                  38;5;42
 .json                 38;5;199
 .jsp                  38;5;074;1
