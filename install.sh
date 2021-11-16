@@ -84,14 +84,14 @@ vim -c ':PlugInstall! | :PlugUpdate! | :q! | :q!'
 
 rm -rf "$HOME/.zinit"
 mkdir "$HOME/.zinit"
-git clone --depth=1 "https://github.com/zdharma/zinit.git" "$HOME/.zinit/bin"
+git clone --depth=1 git@github.com:zdharma-continuum/zinit.git "$HOME/.zinit/bin"
 
 ###############################################################################
 #  tpm
 ###############################################################################
 
 rm -rf "$HOME/.tmux/plugins/tpm"
-git clone --depth=1 "https://github.com/tmux-plugins/tpm" "$HOME/.tmux/plugins/tpm"
+git clone --depth=1 git@github.com:tmux-plugins/tpm.git "$HOME/.tmux/plugins/tpm"
 
 ###############################################################################
 # finish
