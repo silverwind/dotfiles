@@ -254,6 +254,10 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
+alias ls='ls -lh --color=auto --group-directories-first'
+alias l='ls'
+alias ll='ls'
+alias lla='ll -a'
 
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
   alias "$method"="curl -iX '$method'"
