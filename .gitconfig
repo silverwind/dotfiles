@@ -106,5 +106,6 @@
 	defaultBranch = master
 [receive]
 	advertisePushOptions = true
+	procReceiveRefs = refs/for
 [clone]
 	defaultRemoteName = origin
