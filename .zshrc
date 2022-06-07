@@ -16,14 +16,58 @@ zinit light zsh-users/zsh-completions
 # prompt
 #######################################################
 
+source ~/.gitstatus/gitstatus.plugin.zsh
+
 autoload -U colors && colors
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git*' formats "%{$fg[grey]%}%s %{$fg[blue]%}%b%{$reset_color%}%m%u%c%{$reset_color%}"
-precmd () { vcs_info }
+
+function gitstatus_prompt_update() {
+  emulate -L zsh
+  typeset -g  GITSTATUS_PROMPT=''
+  typeset -gi GITSTATUS_PROMPT_LEN=0
+
+  # Call gitstatus_query synchronously. Note that gitstatus_query can also be called
+  # asynchronously; see documentation in gitstatus.plugin.zsh.
+  gitstatus_query 'MY'                  || return 1  # error
+  [[ $VCS_STATUS_RESULT == 'ok-sync' ]] || return 0  # not a git repo
+
+  local clean='%39F'
+  local conflicted='%196F'
+
+  local p
+  local where  # branch name, tag or commit
+  if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
+    where=$VCS_STATUS_LOCAL_BRANCH
+  elif [[ -n $VCS_STATUS_TAG ]]; then
+    p+='%f#'
+    where=$VCS_STATUS_TAG
+  else
+    p+='%f@'
+    where=${VCS_STATUS_COMMIT[1,8]}
+  fi
+
+  p+="${clean}${where//\%/%%}" # escape %
+  # ⇣42 if behind the remote.
+  (( VCS_STATUS_COMMITS_BEHIND )) && p+=" ${clean}⇣${VCS_STATUS_COMMITS_BEHIND}"
+  # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
+  (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && p+=" "
+  (( VCS_STATUS_COMMITS_AHEAD )) && p+="${clean}⇡${VCS_STATUS_COMMITS_AHEAD}"
+  # ⇠42 if behind the push remote.
+  (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && p+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
+  (( VCS_STATUS_PUSH_COMMITS_AHEAD && !VCS_STATUS_PUSH_COMMITS_BEHIND )) && p+=" "
+  # ⇢42 if ahead of the push remote; no leading space if also behind: ⇠42⇢42.
+  (( VCS_STATUS_PUSH_COMMITS_AHEAD )) && p+="${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
+  # 'merge' if the repo is in an unusual state.
+  [[ -n $VCS_STATUS_ACTION ]] && p+=" ${conflicted}${VCS_STATUS_ACTION}"
+  GITSTATUS_PROMPT="${p}%f"
+}
+
+gitstatus_stop 'MY' && gitstatus_start 'MY'
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd gitstatus_prompt_update
+setopt no_prompt_bang prompt_percent prompt_subst
+
 PS1='%{$fg[red]%}%n%{$fg[yellow]%}@%{$fg[blue]%}%m %{$fg[green]%}%~ %{$fg[yellow]%}$ %{$reset_color%}'
-RPS1='%(?..%{$fg[red]%}%?%{$reset_color%} )${vcs_info_msg_0_}'
+RPS1='%{$fg[grey]%}git%{$reset_color%} $GITSTATUS_PROMPT'
 
 #######################################################
 # tweaks

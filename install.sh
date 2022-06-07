@@ -79,8 +79,11 @@ fi
 vim -c ':PlugInstall! | :PlugUpdate! | :q! | :q!'
 
 ###############################################################################
-# zinit
+# zsh
 ###############################################################################
+
+rm -rf "$HOME/.gitstatus"
+git clone --depth=1 git@github.com:romkatv/gitstatus.git "$HOME/.gitstatus"
 
 rm -rf "$HOME/.zinit"
 mkdir "$HOME/.zinit"
@@ -97,4 +100,4 @@ git clone --depth=1 git@github.com:tmux-plugins/tpm.git "$HOME/.tmux/plugins/tpm
 # finish
 ###############################################################################
 
-echo -e "Installation done. Restart you shell to install zinit."
+echo -e "Installation done. Restart you shell to complete."
