@@ -6,8 +6,6 @@
 
 source ~/.zinit/bin/zinit.zsh
 
-zinit snippet https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/functions.zsh
-zinit snippet https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/termsupport.zsh
 zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -19,6 +17,7 @@ zinit light zsh-users/zsh-completions
 source ~/.gitstatus/gitstatus.plugin.zsh
 
 autoload -U colors && colors
+autoload -Uz add-zsh-hook
 
 function gitstatus_prompt_update() {
   emulate -L zsh
@@ -62,7 +61,6 @@ function gitstatus_prompt_update() {
 }
 
 gitstatus_stop 'MY' && gitstatus_start 'MY'
-autoload -Uz add-zsh-hook
 add-zsh-hook precmd gitstatus_prompt_update
 setopt no_prompt_bang prompt_percent prompt_subst
 
@@ -331,6 +329,96 @@ export LESS_TERMCAP_se=$'\E[0m'    # end standout-mode
 
 export PAGER='most'
 export MANPAGER='most'
+
+#######################################################
+# title - based on https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/termsupport.zsh
+#######################################################
+
+function title {
+  setopt localoptions nopromptsubst
+
+  # if $2 is unset use $1 as default
+  # if it is set and empty, leave it as is
+  : ${2=$1}
+
+  case "$TERM" in
+    cygwin|xterm*|putty*|rxvt*|konsole*|ansi|mlterm*|alacritty|st*|foot)
+      print -Pn "\e]2;${2:q}\a" # set window name
+      print -Pn "\e]1;${1:q}\a" # set tab name
+      ;;
+    screen*|tmux*)
+      print -Pn "\ek${1:q}\e\\" # set screen hardstatus
+      ;;
+    *)
+      if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
+        print -Pn "\e]2;${2:q}\a" # set window name
+        print -Pn "\e]1;${1:q}\a" # set tab name
+      else
+        # Try to use terminfo to set the title if the feature is available
+        if (( ${+terminfo[fsl]} && ${+terminfo[tsl]} )); then
+          print -Pn "${terminfo[tsl]}$1${terminfo[fsl]}"
+        fi
+      fi
+      ;;
+  esac
+}
+
+function termsupport_precmd {
+  [[ "${DISABLE_AUTO_TITLE:-}" != true ]] || return
+  title "%15<..<%~%<<" "%n@%m:%~"
+}
+
+function termsupport_preexec {
+  [[ "${DISABLE_AUTO_TITLE:-}" != true ]] || return
+  emulate -L zsh
+  setopt extended_glob
+
+  # split command into array of arguments
+  local -a cmdargs
+  cmdargs=("${(z)2}")
+  # if running fg, extract the command from the job description
+  if [[ "${cmdargs[1]}" = fg ]]; then
+    # get the job id from the first argument passed to the fg command
+    local job_id jobspec="${cmdargs[2]#%}"
+    # logic based on jobs arguments:
+    # http://zsh.sourceforge.net/Doc/Release/Jobs-_0026-Signals.html#Jobs
+    # https://www.zsh.org/mla/users/2007/msg00704.html
+    case "$jobspec" in
+      <->) # %number argument:
+        # use the same <number> passed as an argument
+        job_id=${jobspec} ;;
+      ""|%|+) # empty, %% or %+ argument:
+        # use the current job, which appears with a + in $jobstates:
+        # suspended:+:5071=suspended (tty output)
+        job_id=${(k)jobstates[(r)*:+:*]} ;;
+      -) # %- argument:
+        # use the previous job, which appears with a - in $jobstates:
+        # suspended:-:6493=suspended (signal)
+        job_id=${(k)jobstates[(r)*:-:*]} ;;
+      [?]*) # %?string argument:
+        # use $jobtexts to match for a job whose command *contains* <string>
+        job_id=${(k)jobtexts[(r)*${(Q)jobspec}*]} ;;
+      *) # %string argument:
+        # use $jobtexts to match for a job whose command *starts with* <string>
+        job_id=${(k)jobtexts[(r)${(Q)jobspec}*]} ;;
+    esac
+
+    # override preexec function arguments with job command
+    if [[ -n "${jobtexts[$job_id]}" ]]; then
+      1="${jobtexts[$job_id]}"
+      2="${jobtexts[$job_id]}"
+    fi
+  fi
+
+  # cmd name only, or if this is sudo or ssh, the next cmd
+  local CMD="${1[(wr)^(*=*|sudo|ssh|mosh|rake|-*)]:gs/%/%%}"
+  local LINE="${2:gs/%/%%}"
+
+  title "$CMD" "%100>...>${LINE}%<<"
+}
+
+add-zsh-hook precmd termsupport_precmd
+add-zsh-hook preexec termsupport_preexec
 
 #######################################################
 # source .zshrc.local
