@@ -32,7 +32,7 @@ function gitstatus_prompt_update() {
   local clean='%39F'
   local conflicted='%196F'
 
-  local p
+  local p='%244Fgit '
   local where  # branch name, tag or commit
   if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
     where=$VCS_STATUS_LOCAL_BRANCH
@@ -65,7 +65,7 @@ add-zsh-hook precmd gitstatus_prompt_update
 setopt no_prompt_bang prompt_percent prompt_subst
 
 PS1='%{$fg[red]%}%n%{$fg[yellow]%}@%{$fg[blue]%}%m %{$fg[green]%}%~ %{$fg[yellow]%}$ %{$reset_color%}'
-RPS1='%{$fg[grey]%}git%{$reset_color%} $GITSTATUS_PROMPT'
+RPS1='$GITSTATUS_PROMPT'
 
 #######################################################
 # tweaks
