@@ -48,7 +48,7 @@
 	remote = green
 [diff]
 	renames = copies
-	algorithm = patience
+	algorithm = histogram
 	compactionHeuristic = true
 	wsErrorHighlight = all
 	context = 4
