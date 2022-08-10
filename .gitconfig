@@ -108,3 +108,5 @@
 	procReceiveRefs = refs/for
 [clone]
 	defaultRemoteName = origin
+[advice]
+	skippedCherryPicks = false
