@@ -60,7 +60,6 @@
 	showUntrackedFiles = no
 [pull]
 	rebase = true
-	twohead = ort
 [push]
 	default = current
 	followTags = true
