@@ -1,5 +1,3 @@
-[include]
-	path = ~/.gitconfig.local
 [core]
 	legacyheaders = false
 	quotePath = false
@@ -111,3 +109,5 @@
 	defaultRemoteName = origin
 [advice]
 	skippedCherryPicks = false
+[include]
+	path = ~/.gitconfig.local
