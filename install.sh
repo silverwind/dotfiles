@@ -33,7 +33,6 @@ uninstall () {
 ###############################################################################
 
 declare -a files=(
-  .agignore
   .bash_profile
   .bashrc
   .cargo/config
@@ -51,7 +50,6 @@ declare -a files=(
   .psqlrc
   .tmux.conf
   .wgetrc
-  .yarnrc
   .zshrc
 )
 
