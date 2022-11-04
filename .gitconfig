@@ -65,17 +65,8 @@
 [rebase]
 	abbreviateCommands = true
 [alias]
-	a = commit --amend
-	c = commit -am
-	d = !git diff --exit-code && git diff --cached
 	dif = diff
 	git = !exec git
-	p = push -u
-	r = reset --soft HEAD~1
-	s = status
-	sc = clone --depth=1
-	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n 15
-	addnw = !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
 [branch]
 	autosetupmerge = always
 	autosetuprebase = always
