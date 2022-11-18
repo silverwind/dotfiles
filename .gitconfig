@@ -9,6 +9,7 @@
 	autocrlf = false
 	commitGraph = true
 	ignoreCase = false
+	untrackedCache = true
 [repack]
 	usedeltabaseoffset = true
 [merge]
