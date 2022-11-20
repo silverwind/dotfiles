@@ -78,9 +78,11 @@
 	fetchJobs = 0
 [fetch]
 	prune = true
+	pruneTags = true
 	tags = true
 	recurseSubmodules = true
 	parallel = 0
+	writeCommitGraph = true
 [tag]
 	sort = version:refname
 [gc]
