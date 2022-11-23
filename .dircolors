@@ -23,7 +23,8 @@ STICKY_OTHER_WRITABLE 38;5;220;1
 *CONTRIBUTORS         38;5;220;1
 *COPYING              38;5;220;1
 *COPYRIGHT            38;5;220;1
-*Dockerfile           38;5;155
+*Dockerfile           38;5;197
+*Vagrantfile          38;5;197
 *HISTORY              38;5;220;1
 *INSTALL              38;5;220;1
 *LICENSE              38;5;220;1
@@ -99,10 +100,12 @@ STICKY_OTHER_WRITABLE 38;5;220;1
 .cdi                  38;5;213
 .cdr                  38;5;97
 .cert                 38;5;192;3
+.cfg                  38;5;215
 .chm                  38;5;141
 .cl                   38;5;81
 .cnc                  38;5;7
 .coffee               38;5;074;1
+.conf                 38;5;215
 .cp                   38;5;81
 .cpio                 38;5;40
 .cpp                  38;5;81
@@ -438,6 +441,7 @@ STICKY_OTHER_WRITABLE 38;5;220;1
 .timer                38;5;45
 .tmp                  38;5;244
 .toast                38;5;124
+.toml                 38;5;074;1
 .torrent              38;5;116
 .ts                   38;5;115
 .ttf                  38;5;43
