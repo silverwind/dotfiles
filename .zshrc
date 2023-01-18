@@ -5,7 +5,6 @@
 #######################################################
 
 source ~/.zinit/bin/zinit.zsh
-
 zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -162,7 +161,6 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
-
 setopt ALL_EXPORT
 
 #######################################################
@@ -172,9 +170,6 @@ setopt ALL_EXPORT
 if [ -f "$HOME/.dircolors" ]; then
   if hash dircolors &>/dev/null; then
     eval $(dircolors -b $HOME/.dircolors)
-  fi
-  if hash gdircolors &>/dev/null; then
-    eval $(gdircolors -b $HOME/.dircolors)
   fi
 fi
 
@@ -250,24 +245,9 @@ elif [[ "$OSTYPE" == linux* ]]; then
   fi
 fi
 
-# banish files from git history
-grem() {
-  git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $@" --prune-empty --tag-name-filter cat -- --all
-}
-
 # create a directory and cd into it
 md() {
   mkdir -p "$@" && cd "$@"
-}
-
-# cat with sytnax highlighting
-ct() {
-  pygmentize -O style=monokai -f console256 -g "$@"
-}
-
-# finds files and executes a command on them
-findexec() {
-  find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
 }
 
 #######################################################
