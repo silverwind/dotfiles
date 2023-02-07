@@ -170,6 +170,8 @@ setopt ALL_EXPORT
 if [ -f "$HOME/.dircolors" ]; then
   if hash dircolors &>/dev/null; then
     eval $(dircolors -b $HOME/.dircolors)
+  elif hash gdircolors &>/dev/null; then
+    eval $(gdircolors -b $HOME/.dircolors)
   fi
 fi
 
