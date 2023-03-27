@@ -3,15 +3,13 @@
 	quotePath = false
 	trustctime = false
 	precomposeUnicode = false
-	pager = delta --color-only --pager cat --diff-highlight
+	pager = cat
 	logAllRefUpdates = true
 	eol = lf
 	autocrlf = false
 	commitGraph = true
 	ignoreCase = false
 	untrackedCache = true
-[interactive]
-	diffFilter = delta --color-only --pager cat --diff-highlight
 [repack]
 	usedeltabaseoffset = true
 [merge]
