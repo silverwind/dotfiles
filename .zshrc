@@ -123,6 +123,9 @@ bindkey '^?' backward-delete-char
 # reduce key timeout to .1s
 export KEYTIMEOUT=1
 
+# word-breaking characters (default minus _ and -)
+export WORDCHARS="*?.[]~=/&;!#$%^(){}<>"
+
 unsetopt ALL_EXPORT
 
 setopt AUTO_PUSHD           # Push the old directory onto the stack on cd.
