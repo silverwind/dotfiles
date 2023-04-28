@@ -233,20 +233,14 @@ zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
 if [[ "$OSTYPE" == cygwin* ]]; then
   alias open='cygstart'
   alias copy='cat > /dev/clipboard'
-  alias pbcopy='cat > /dev/clipboard'
-  alias pbpaste='cat /dev/clipboard'
 elif [[ "$OSTYPE" == darwin* ]]; then
   alias copy='pbcopy'
 elif [[ "$OSTYPE" == linux* ]]; then
   alias open='xdg-open'
   if (( $+commands[xclip] )); then
     alias copy='xclip -selection clipboard -in'
-    alias pbcopy='xclip -selection clipboard -in'
-    alias pbpaste='xclip -selection clipboard -out'
   elif (( $+commands[xsel] )); then
     alias copy='xsel --clipboard --input'
-    alias pbcopy='xsel --clipboard --input'
-    alias pbpaste='xsel --clipboard --output'
   fi
 fi
 
