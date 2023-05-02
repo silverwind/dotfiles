@@ -74,7 +74,8 @@ if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
   curl -sfLo "$HOME/.vim/autoload/plug.vim" --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 fi
 
-vim -c ':PlugInstall! | :PlugUpdate! | :q! | :q!'
+# PlugInstall seems to abort mid-way, run it multiple times
+vim -c ':PlugInstall! | :PlugInstall! | :PlugInstall! | :PlugUpdate! | :q! | :q!'
 
 ###############################################################################
 # zsh
