@@ -249,7 +249,7 @@ md() {
 }
 
 #######################################################
-# general aliases
+# aliases
 #######################################################
 
 setopt CORRECT
@@ -277,6 +277,27 @@ alias ls='ls -lh --color=auto --group-directories-first'
 alias l='ls'
 alias ll='ls'
 alias lla='ll -a'
+alias ip='ip --color=auto'
+alias grep='grep --color=auto'
+alias egrep='grep -E --color=auto'
+alias ag='ag -u --color-match "1;32" --color-path "1;34" --filename'
+alias rg='rg --no-heading --hidden --glob "!.git" --smart-case --colors "path:fg:blue" --colors "match:fg:green" --colors "line:fg:yellow"'
+alias gti='git'
+alias maek='make'
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n 15 && echo"
+alias gcommit='git commit -a -m'
+alias greset='git reset --soft HEAD~1'
+alias gamend='git commit --amend'
+
+gpush() {
+  BRANCH_NAME="$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')"
+  git push -u --follow-tags origin "$BRANCH_NAME" $@
+}
+
+gpull() {
+  BRANCH_NAME="$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')"
+  git pull --tags --force origin "$BRANCH_NAME" $@
+}
 
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
   alias "$method"="curl -iX '$method'"
