@@ -252,10 +252,7 @@ md() {
 # aliases
 #######################################################
 
-setopt CORRECT
 alias history='fc -il 1'
-alias map="xargs -n1"
-alias path='echo -e ${PATH//:/\\n}'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -265,7 +262,7 @@ alias ls='ls -lh --color=auto --group-directories-first'
 alias l='ls'
 alias ll='ls'
 alias lla='ll -a'
-alias ip='ip --color=auto'
+alias ip='ip -c'
 alias grep='grep --color=auto'
 alias egrep='grep -E --color=auto'
 alias ag='ag -u --color-match "1;32" --color-path "1;34" --filename'
@@ -287,9 +284,9 @@ gpull() {
   git pull --tags --force origin "$BRANCH_NAME" $@
 }
 
-for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-  alias "$method"="curl -iX '$method'"
-done
+#for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+#  alias "$method"="curl -iX '$method'"
+#done
 
 #######################################################
 # pager
