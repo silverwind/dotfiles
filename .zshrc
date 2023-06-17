@@ -253,21 +253,9 @@ md() {
 #######################################################
 
 setopt CORRECT
-alias cd='nocorrect cd'
-alias cp='nocorrect cp -v -R'
-alias find='noglob find'
-alias ftp='noglob ftp'
-alias gcc='nocorrect gcc'
-alias grep='nocorrect grep'
 alias history='fc -il 1'
-alias ln='nocorrect ln'
-alias man='nocorrect man'
 alias map="xargs -n1"
-alias mkdir='nocorrect mkdir -p'
-alias mv='nocorrect mv'
 alias path='echo -e ${PATH//:/\\n}'
-alias rm='nocorrect rm -rf'
-alias rsync='noglob rsync'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
