@@ -292,25 +292,6 @@ gpull() {
 # pager
 #######################################################
 
-less_opts=(
-  "--ignore-case"
-  "--RAW-CONTROL-CHARS"
-  "--quiet"
-  "--quit-on-intr"
-  "--dumb"
-  "--tabs=2"
-  "--shift=2"
-  "-M +Gg"
-)
-export LESS="${less_opts[*]}"
-
-export LESS_TERMCAP_mb=$'\E[1;31m' # begin blinking
-export LESS_TERMCAP_md=$'\E[1;33m' # begin bold
-export LESS_TERMCAP_us=$'\E[1;31m' # begin underline
-export LESS_TERMCAP_me=$'\E[0m'    # end mode
-export LESS_TERMCAP_ue=$'\E[0m'    # end underline
-export LESS_TERMCAP_se=$'\E[0m'    # end standout-mode
-
 export PAGER='most'
 export MANPAGER='most'
 
