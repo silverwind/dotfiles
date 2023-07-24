@@ -134,7 +134,6 @@ setopt PUSHD_SILENT         # Do not print the directory stack after pushd or po
 setopt PUSHD_TO_HOME        # Push to home directory when no argument is given.
 setopt MULTIOS              # Write to multiple descriptors.
 setopt EXTENDED_GLOB        # Use extended globbing syntax.
-
 setopt AUTO_LIST
 setopt AUTO_PARAM_SLASH
 setopt AUTO_RESUME
@@ -150,6 +149,7 @@ setopt RC_QUOTES
 setopt REC_EXACT
 setopt GLOBSTAR_SHORT &> /dev/null
 setopt DOT_GLOB
+setopt RM_STAR_SILENT        # disable confirmation on rm
 
 # history options
 HISTFILE=$HOME/.zsh_history
