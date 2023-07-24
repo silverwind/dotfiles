@@ -149,7 +149,7 @@ setopt RC_QUOTES
 setopt REC_EXACT
 setopt GLOBSTAR_SHORT &> /dev/null
 setopt DOT_GLOB
-setopt RM_STAR_SILENT        # disable confirmation on rm
+setopt RM_STARSILENT         # disable confirmation on rm
 
 # history options
 HISTFILE=$HOME/.zsh_history
