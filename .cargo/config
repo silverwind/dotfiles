@@ -1,2 +1,5 @@
 [http]
-check-revoke=false
+check-revoke = false
+
+[net]
+git-fetch-with-cli = true
