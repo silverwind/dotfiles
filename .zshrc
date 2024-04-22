@@ -270,11 +270,16 @@ alias egrep='grep -E --color=auto'
 alias ag='ag -u --color-match "1;32" --color-path "1;34" --filename'
 alias rg='rg --no-heading --hidden --glob "!.git" --smart-case --colors "path:fg:blue" --colors "match:fg:green" --colors "line:fg:yellow"'
 alias gti='git'
+alias g='git'
 alias maek='make'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n 15 && echo"
+alias gl="glog"
 alias gcommit='git commit -a -m'
+alias gc='gcommit'
 alias greset='git reset --soft HEAD~1'
+alias gr='greset'
 alias gamend='git commit --amend'
+alias gp='gpush'
 
 gpush() {
   BRANCH_NAME="$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')"
