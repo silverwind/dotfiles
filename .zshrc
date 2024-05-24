@@ -5,7 +5,7 @@
 #######################################################
 
 source ~/.zinit/bin/zinit.zsh
-zinit light zsh-users/zsh-history-substring-search
+zinit light silverwind/zsh-history-substring-search # https://github.com/zsh-users/zsh-history-substring-search/pull/159
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 
