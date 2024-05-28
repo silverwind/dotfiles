@@ -291,10 +291,6 @@ gpull() {
   git pull --tags --force origin "$BRANCH_NAME" $@
 }
 
-#for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-#  alias "$method"="curl -iX '$method'"
-#done
-
 #######################################################
 # pager
 #######################################################
