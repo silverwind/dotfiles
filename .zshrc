@@ -292,7 +292,9 @@ gpull() {
 }
 
 gct() {
-  git branch -D "$(basename $1)" 2 &> /dev/null || true
+  BRANCH_NAME="$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')"
+  git checkout "$BRANCH_NAME"
+  git branch -D "$(basename $1)" || true
   git checkout -t "$1"
 }
 
