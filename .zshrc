@@ -291,6 +291,11 @@ gpull() {
   git pull --tags --force origin "$BRANCH_NAME" $@
 }
 
+gct() {
+  git branch -D "$(basename $1)" 2 &> /dev/null || true
+  git checkout -t "$1"
+}
+
 #######################################################
 # pager
 #######################################################
