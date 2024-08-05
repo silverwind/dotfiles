@@ -291,6 +291,7 @@ gpull() {
   git pull --tags --force origin "$BRANCH_NAME" $@
 }
 
+# set branch to any remote branch: "gct origin/foo"
 gct() {
   BRANCH_NAME="$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')"
   git fetch $(echo $1 | cut -d '/' -f 1)
