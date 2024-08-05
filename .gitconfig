@@ -14,7 +14,7 @@
 	usedeltabaseoffset = true
 [merge]
 	log = true
-	conflictstyle = zdiff3
+	conflictstyle = merge
 	keepbackup = false
 [apply]
 	whitespace = fix
