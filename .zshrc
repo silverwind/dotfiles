@@ -291,13 +291,20 @@ gpull() {
   git pull --tags --force origin "$BRANCH_NAME" $@
 }
 
-# set branch to any remote branch: "gct origin/foo"
+# set branch to any remote branch: "gct origin/foo" or "gct foo"
 gct() {
-  BRANCH_NAME="$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')"
-  git fetch $(echo $1 | cut -d '/' -f 1)
-  git checkout "$BRANCH_NAME"
-  git branch -D "$(basename $1)" || true
-  git checkout -t "$1"
+  CURRENT_BRANCH_NAME="$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')"
+  if [[ $1 == */* ]]; then
+    ORIGIN="$(echo $1 | cut -d '/' -f 1)"
+    BRANCH_NAME="$(echo $1 | cut -d '/' -f 2)"
+  else
+    ORIGIN="origin"
+    BRANCH_NAME="$1"
+  fi
+  git fetch "$ORIGIN"
+  git checkout "$CURRENT_BRANCH_NAME"
+  git branch -D "$BRANCH_NAME" || true
+  git checkout -t "$ORIGIN/$BRANCH_NAME"
 }
 
 #######################################################
