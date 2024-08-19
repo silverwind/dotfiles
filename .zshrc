@@ -235,6 +235,7 @@ if [[ "$OSTYPE" == cygwin* ]]; then
 elif [[ "$OSTYPE" == darwin* ]]; then
   alias copy='pbcopy'
 elif [[ "$OSTYPE" == linux* ]]; then
+  alias ip='ip -c' # https://github.com/brona/iproute2mac/issues/21
   alias open='xdg-open'
   if (( $+commands[xclip] )); then
     alias copy='xclip -selection clipboard -in'
@@ -264,7 +265,6 @@ alias ll='ls'
 alias lla='ll -a'
 alias rm='rm -rf'
 alias cp='cp -r'
-alias ip='ip -c'
 alias grep='grep --color=auto'
 alias egrep='grep -E --color=auto'
 alias ag='ag -u --color-match "1;32" --color-path "1;34" --filename'
