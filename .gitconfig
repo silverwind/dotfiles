@@ -78,6 +78,7 @@
 [http]
 	sslverify = false
 	followRedirects = true
+	postBuffer = 1048576000
 [submodule]
 	fetchJobs = 0
 [fetch]
