@@ -19,7 +19,7 @@
 [apply]
 	whitespace = fix
 [help]
-	autocorrect = 1
+	autocorrect = immediate
 [rerere]
 	enabled = true
 	autoUpdate = true
