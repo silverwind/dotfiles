@@ -10,6 +10,10 @@
 	commitGraph = true
 	ignoreCase = false
 	untrackedCache = true
+[column]
+	ui = auto
+[commit]
+	verbose = true
 [repack]
 	usedeltabaseoffset = true
 [merge]
@@ -52,6 +56,8 @@
 	compactionHeuristic = true
 	wsErrorHighlight = all
 	context = 4
+	colorMoved = plain
+	mnemonicPrefix = true
 [diff "bin"]
 	textconv = hexdump -v -C
 [credential]
@@ -67,7 +73,8 @@
 	autoSetupRemote = true
 [rebase]
 	abbreviateCommands = true
-	autosquash = true
+	autoSquash = true
+	autoStash = true
 	updateRefs = true
 [alias]
 	dif = diff
@@ -88,6 +95,7 @@
 	recurseSubmodules = true
 	parallel = 0
 	writeCommitGraph = true
+	all = true
 [tag]
 	sort = version:refname
 [gc]
