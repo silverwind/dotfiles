@@ -12,8 +12,6 @@
 	untrackedCache = true
 [column]
 	ui = auto
-[commit]
-	verbose = true
 [repack]
 	usedeltabaseoffset = true
 [merge]
