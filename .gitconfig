@@ -54,7 +54,6 @@
 	compactionHeuristic = true
 	wsErrorHighlight = all
 	context = 4
-	colorMoved = plain
 	mnemonicPrefix = true
 [diff "bin"]
 	textconv = hexdump -v -C
