@@ -2,7 +2,6 @@ call plug#begin()
 Plug 'itchyny/lightline.vim'
 Plug 'eapache/rainbow_parentheses.vim'
 Plug 'Townk/vim-autoclose'
-Plug 'ervandew/supertab'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
@@ -55,7 +54,8 @@ set noswapfile
 set novisualbell
 set nowritebackup
 set nrformats-=octal
-set pastetoggle=<F2>
+"no longer available in recent versions of neovim
+"set pastetoggle=<F2>
 set ruler
 set scrolloff=1
 set sessionoptions-=options
