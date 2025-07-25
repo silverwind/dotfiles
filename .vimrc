@@ -1,6 +1,5 @@
 call plug#begin()
 Plug 'itchyny/lightline.vim'
-Plug 'eapache/rainbow_parentheses.vim'
 Plug 'Townk/vim-autoclose'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'editorconfig/editorconfig-vim'
@@ -114,24 +113,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 autocmd FileType Makefile set noexpandtab
 inoremap <C-U> <C-G>u<C-U>
-
-" Enable rainbow
-autocmd VimEnter * RainbowParenthesesToggle
-autocmd Syntax * RainbowParenthesesLoadRound
-autocmd Syntax * RainbowParenthesesLoadSquare
-autocmd Syntax * RainbowParenthesesLoadBraces
-let g:rbpt_max = 8
-let g:bold_parentheses = 0
-let g:rbpt_colorpairs = [
-  \ ['208', 'RoyalBlue3'],
-  \ ['39', 'SeaGreen3'],
-  \ ['46', 'DarkOrchid3'],
-  \ ['199', 'firebrick3'],
-  \ ['190', 'RoyalBlue3'],
-  \ ['92', 'SeaGreen3'],
-  \ ['196', 'DarkOrchid3'],
-  \ ['44', 'firebrick3'],
-  \ ]
 
 " Force redraw for lighline (Cygwin issue)
 if !empty($CYGWIN)
