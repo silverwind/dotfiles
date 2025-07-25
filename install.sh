@@ -35,7 +35,7 @@ uninstall () {
 declare -a files=(
   .bash_profile
   .bashrc
-  .cargo/config
+  .cargo/config.toml
   .config/htop/htoprc
   .curlrc
   .dircolors
