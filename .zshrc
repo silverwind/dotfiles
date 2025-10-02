@@ -307,11 +307,11 @@ gct() {
   git checkout -t "$ORIGIN/$BRANCH_NAME"
 }
 
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=($HOME/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
+if [ -e "$HOME.docker/completions" ]; then
+  fpath=("$HOME/.docker/completions" "$fpath")
+  autoload -Uz compinit
+  compinit
+fi
 
 #######################################################
 # pager
