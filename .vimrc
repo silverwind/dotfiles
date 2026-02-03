@@ -5,19 +5,15 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
-set nocompatible
 filetype plugin indent on
 colorscheme silverwind
 hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-filetype plugin on
-filetype indent on
 syntax on
 
 set autoindent
 set autoread
 set background=dark
 set backspace=indent,eol,start
-set bs=2
 set cmdheight=1
 set modeline
 set modelines=4
@@ -26,12 +22,10 @@ set secure
 set complete-=i
 set copyindent
 set cursorline
-set encoding=utf-8
 set equalalways
 set expandtab
 set ffs=unix,dos,mac
 set foldmethod=marker
-set gdefault
 set guicursor=""
 set hidden
 set history=500
@@ -41,7 +35,6 @@ set incsearch
 set lazyredraw
 set laststatus=2
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-set magic
 set mat=2
 set mouse=""
 set nobackup
@@ -56,7 +49,6 @@ set nrformats-=octal
 "no longer available in recent versions of neovim
 "set pastetoggle=<F2>
 set ruler
-set scrolloff=1
 set sessionoptions-=options
 set shiftwidth=2
 set showcmd
@@ -69,19 +61,14 @@ set smarttab
 set softtabstop=2
 set splitbelow
 set splitright
-set t_vb=
 set tabpagemax=50
 set tabstop=2
 set title
 set titleold=""
-set tm=500
 set timeoutlen=0
 set ttimeoutlen=0
-set ttyfast
 set undolevels=1000
 set virtualedit=block
-set visualbell
-set visualbell t_vb=
 set whichwrap+=<,>,h,l
 set wildchar=<TAB>
 set wildignore+=*~,*.o,*.pyc,.git\*,.hg\*,.svn\*
