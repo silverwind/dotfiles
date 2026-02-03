@@ -6,6 +6,7 @@
 
 source ~/.zinit/bin/zinit.zsh
 zinit light silverwind/zsh-history-substring-search # https://github.com/zsh-users/zsh-history-substring-search/pull/159
+zinit ice wait lucid
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 
@@ -70,9 +71,9 @@ RPS1='$GITSTATUS_PROMPT'
 # tweaks
 #######################################################
 
-if hash tabs &>/dev/null; then tabs -4 &>/dev/null; fi # tab size
-if hash setterm &>/dev/null; then setterm -regtabs 4 &>/dev/null; fi # tab size (compat)
-if which umask &>/dev/null; then umask 022; fi # set umask
+if (( $+commands[tabs] )); then tabs -4 &>/dev/null; fi # tab size
+if (( $+commands[setterm] )); then setterm -regtabs 4 &>/dev/null; fi # tab size (compat)
+umask 022 # set umask
 if [[ "$OSTYPE" == darwin* ]]; then ulimit -n 12288; fi # increase open files limit on darwin
 
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=none,fg=default'
@@ -81,6 +82,10 @@ HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=none,fg=default'
 #######################################################
 # key bindings
 #######################################################
+
+if [ -e "$HOME/.docker/completions" ]; then
+  fpath=("$HOME/.docker/completions" $fpath)
+fi
 
 autoload -U compinit
 compinit -u
@@ -307,11 +312,6 @@ gct() {
   git checkout -t "$ORIGIN/$BRANCH_NAME"
 }
 
-if [ -e "$HOME.docker/completions" ]; then
-  fpath=("$HOME/.docker/completions" "$fpath")
-  autoload -Uz compinit
-  compinit
-fi
 
 #######################################################
 # pager
