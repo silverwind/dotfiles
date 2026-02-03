@@ -8,6 +8,8 @@ call plug#end()
 filetype plugin indent on
 colorscheme silverwind
 hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+hi Normal guibg=NONE ctermbg=NONE
+hi NonText guibg=NONE ctermbg=NONE
 syntax on
 
 set autoindent
