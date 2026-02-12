@@ -92,7 +92,7 @@
 	recurseSubmodules = true
 	parallel = 0
 	writeCommitGraph = true
-	all = true
+	all = false
 [tag]
 	sort = version:refname
 [gc]
