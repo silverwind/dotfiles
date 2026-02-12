@@ -1,19 +1,14 @@
 [core]
-	legacyheaders = false
 	quotePath = false
 	trustctime = false
 	precomposeUnicode = false
 	pager = cat
-	logAllRefUpdates = true
 	eol = lf
 	autocrlf = false
-	commitGraph = true
 	ignoreCase = false
 	untrackedCache = true
 [column]
 	ui = auto
-[repack]
-	usedeltabaseoffset = true
 [merge]
 	log = true
 	conflictstyle = merge
@@ -26,11 +21,7 @@
 	enabled = true
 	autoUpdate = true
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
-	ui = always
+	ui = auto
 [color "diff"]
 	meta = yellow bold
 	frag = magenta
@@ -51,7 +42,6 @@
 [diff]
 	renames = copies
 	algorithm = histogram
-	compactionHeuristic = true
 	wsErrorHighlight = all
 	context = 4
 	mnemonicPrefix = true
@@ -81,7 +71,6 @@
 	autosetuprebase = always
 [http]
 	sslverify = false
-	followRedirects = true
 	postBuffer = 1048576000
 [submodule]
 	fetchJobs = 0
@@ -91,12 +80,9 @@
 	tags = true
 	recurseSubmodules = true
 	parallel = 0
-	writeCommitGraph = true
 	all = false
 [tag]
 	sort = version:refname
-[gc]
-	writeCommitGraph = true
 [am]
 	threeWay = true
 [filter "lfs"]
