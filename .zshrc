@@ -62,6 +62,8 @@ function gitstatus_prompt_update() {
 
 gitstatus_stop 'MY' && gitstatus_start 'MY'
 add-zsh-hook precmd gitstatus_prompt_update
+_reset_cursor() { printf '\e[6 q'; }
+precmd_functions+=(_reset_cursor)
 setopt no_prompt_bang prompt_percent prompt_subst
 
 PS1='%{$fg[red]%}%n%{$fg[yellow]%}@%{$fg[blue]%}%m %{$fg[green]%}%~ %{$fg[yellow]%}$ %{$reset_color%}'
