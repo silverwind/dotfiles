@@ -149,13 +149,11 @@ setopt CDABLE_VARS
 setopt COMPLETE_IN_WORD
 setopt GLOB_DOTS
 setopt LONG_LIST_JOBS
-setopt MAIL_WARNING
 setopt NOTIFY
 setopt PUSHD_MINUS
 setopt RC_QUOTES
 setopt REC_EXACT
 setopt GLOBSTAR_SHORT &> /dev/null
-setopt DOT_GLOB
 setopt RM_STARSILENT         # disable confirmation on rm
 
 # history options
@@ -168,7 +166,6 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_NO_STORE
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
-setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt ALL_EXPORT
 
