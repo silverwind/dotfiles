@@ -328,7 +328,7 @@ gw() {
   else
     local -a wt_lines=("${(f)wt_list}")
     local root=${wt_lines[1]%% *}
-    local wt_path="${root:h}/${root:t}-$1"
+    local wt_path="${root:h}/${root:t}-${1//\//-}"
     if git show-ref --verify --quiet "refs/heads/$1" 2>/dev/null; then
       git worktree add "$wt_path" "$1"
     else
