@@ -299,6 +299,44 @@ gpull() {
   git pull --tags --force origin "$BRANCH_NAME" $@
 }
 
+# switch to or create a git worktree
+gw() {
+  git rev-parse --git-dir &>/dev/null || return 1
+  if [[ -z "$1" ]]; then
+    git worktree list
+    return
+  fi
+  if [[ "$1" == "clean" ]]; then
+    local -a wts=("${(@f)$(git worktree list --porcelain)}")
+    wts=("${(@M)wts:#worktree *}")
+    wts=("${wts[@]#worktree }")
+    cd "$wts[1]" || return 1
+    for wt in "${wts[@]:1}"; do
+      git worktree remove --force "$wt" && echo "Removed $wt"
+    done
+    git worktree prune
+    return
+  fi
+  local wt_list=$(git worktree list)
+  local dir d
+  while IFS= read -r line; do
+    d=${line%% *}
+    [[ -d "$d" ]] && [[ "${(L)line}" == *"${(L)1}"* ]] && { dir=$d; break; }
+  done <<< "$wt_list"
+  if [[ -n "$dir" ]]; then
+    cd "$dir"
+  else
+    local -a wt_lines=("${(f)wt_list}")
+    local root=${wt_lines[1]%% *}
+    local wt_path="${root:h}/${root:t}-$1"
+    if git show-ref --verify --quiet "refs/heads/$1" 2>/dev/null; then
+      git worktree add "$wt_path" "$1"
+    else
+      git worktree add -b "$1" "$wt_path"
+    fi && cd "$wt_path"
+  fi
+}
+
 # set branch to any remote branch: "gct origin/foo" or "gct foo"
 gct() {
   CURRENT_BRANCH_NAME="$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')"
