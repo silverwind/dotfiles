@@ -45,6 +45,10 @@ function gitstatus_prompt_update() {
   fi
 
   p+="${clean}${where//\%/%%}" # escape %
+  # worktree name in cyan if inside a git worktree
+  if [[ -f "${VCS_STATUS_WORKDIR}/.git" ]]; then
+    p+=" %6F${VCS_STATUS_WORKDIR:t}"
+  fi
   # ⇣42 if behind the remote.
   (( VCS_STATUS_COMMITS_BEHIND )) && p+=" ${clean}⇣${VCS_STATUS_COMMITS_BEHIND}"
   # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
