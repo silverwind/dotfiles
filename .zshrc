@@ -337,20 +337,29 @@ gw() {
   fi
 }
 
-# set branch to any remote branch: "gct origin/foo" or "gct foo"
+# set branch to any remote branch: "gct user:branch", "gct user/branch", or "gct branch"
 gct() {
-  CURRENT_BRANCH_NAME="$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')"
-  if [[ $1 == */* ]]; then
-    ORIGIN="$(echo $1 | cut -d '/' -f 1)"
-    BRANCH_NAME="$(echo $1 | cut -d '/' -f 2)"
+  if [[ -z $1 ]]; then echo "Usage: gct [user:/]branch"; return 1; fi
+  local REMOTE BRANCH
+  if [[ $1 == *[/:]* ]]; then
+    REMOTE="${1%%[/:]*}"
+    BRANCH="${1#*[/:]}"
+    if ! git remote get-url "$REMOTE" &>/dev/null; then
+      local ORIGIN_URL REMOTE_URL
+      ORIGIN_URL="$(git remote get-url origin)"
+      if [[ "$ORIGIN_URL" == *://* ]]; then
+        REMOTE_URL="${ORIGIN_URL%/*/*}/${REMOTE}/${ORIGIN_URL##*/}"
+      else
+        REMOTE_URL="${ORIGIN_URL%%:*}:${REMOTE}/${ORIGIN_URL##*/}"
+      fi
+      git remote add "$REMOTE" "$REMOTE_URL"
+    fi
   else
-    ORIGIN="origin"
-    BRANCH_NAME="$1"
+    REMOTE="origin"
+    BRANCH="$1"
   fi
-  git fetch "$ORIGIN"
-  git checkout "$CURRENT_BRANCH_NAME"
-  git branch -D "$BRANCH_NAME" || true
-  git checkout -t "$ORIGIN/$BRANCH_NAME"
+  git fetch "$REMOTE" "$BRANCH"
+  git checkout -B "$BRANCH" -t "$REMOTE/$BRANCH"
 }
 
 
