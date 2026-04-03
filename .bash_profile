@@ -26,12 +26,11 @@ shopt -s nocasematch
 
 export EDITOR=vim
 export GLOBIGNORE=1
-export GREP_COLOR='1;31'
+export GREP_COLORS='mt=1;31'
 export HISTCONTROL=ignoredups
 export HISTFILESIZE=100000
 export HISTSIZE=100000
 export PAGER=less
-export TERM=xterm-256color
 export VISUAL=vim
 
 #######################################################

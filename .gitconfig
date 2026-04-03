@@ -4,15 +4,12 @@
 	precomposeUnicode = false
 	pager = cat
 	eol = lf
-	autocrlf = false
 	ignoreCase = false
 	untrackedCache = true
 [column]
 	ui = auto
 [merge]
 	log = true
-	conflictstyle = merge
-	keepbackup = false
 [apply]
 	whitespace = fix
 [help]
@@ -20,8 +17,6 @@
 [rerere]
 	enabled = true
 	autoUpdate = true
-[color]
-	ui = auto
 [color "diff"]
 	meta = yellow bold
 	frag = magenta
@@ -50,7 +45,6 @@
 [credential]
 	helper = store
 [status]
-	relativePaths = true
 	showUntrackedFiles = no
 [pull]
 	rebase = true
@@ -68,7 +62,6 @@
 	git = !exec git
 [branch]
 	autosetupmerge = always
-	autosetuprebase = always
 [http]
 	sslverify = false
 	postBuffer = 1048576000
@@ -80,7 +73,6 @@
 	tags = true
 	recurseSubmodules = true
 	parallel = 0
-	all = false
 [tag]
 	sort = version:refname
 [am]
@@ -92,11 +84,6 @@
 	required = true
 [init]
 	defaultBranch = master
-[receive]
-	advertisePushOptions = true
-	procReceiveRefs = refs/for
-[clone]
-	defaultRemoteName = origin
 [advice]
 	skippedCherryPicks = false
 [include]

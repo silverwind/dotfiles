@@ -43,7 +43,6 @@ declare -a files=(
   .gitconfig
   .hushlogin
   .inputrc
-  .ls++.conf
   .minttyrc
   .mostrc
   .ncmpcpp

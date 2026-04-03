@@ -1,8 +1,6 @@
 call plug#begin()
 Plug 'itchyny/lightline.vim'
-Plug 'Townk/vim-autoclose'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 filetype plugin indent on
