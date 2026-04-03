@@ -336,26 +336,56 @@ gw() {
   fi
 }
 
-# set branch to any remote branch: "gct user:branch", "gct user/branch", or "gct branch"
+# set branch to any remote branch: "gct user:branch", "gct user/branch", "gct branch", or "gct PR-URL"
 gct() {
-  if [[ -z $1 ]]; then echo "Usage: gct [user:/]branch"; return 1; fi
-  local REMOTE BRANCH
-  if [[ $1 == *[/:]* ]]; then
+  if [[ -z $1 ]]; then echo "Usage: gct [user:/]branch or PR-URL"; return 1; fi
+  local REMOTE BRANCH PR_JSON
+  if [[ $1 == https://github.com/*/pull/* ]]; then
+    local REPO="${1#https://github.com/}"
+    REPO="${REPO%%/pull/*}"
+    local PR_NUM="${1##*/pull/}"
+    PR_NUM="${PR_NUM%%[/?#]*}"
+    PR_JSON="$(gh api "repos/$REPO/pulls/$PR_NUM")" || return 1
+    BRANCH="$(printf '%s' "$PR_JSON" | jq -r '.head.ref')"
+  elif [[ $1 == https://*/pulls/* ]]; then
+    local URL_PATH="${1#https://}"
+    local HOST="${URL_PATH%%/*}"
+    local REST="${URL_PATH#*/}"
+    local REPO="${REST%%/pulls/*}"
+    local PR_NUM="${REST##*pulls/}"
+    PR_NUM="${PR_NUM%%[/?#]*}"
+    local TOKEN
+    TOKEN="$(awk '/^    - name: '"$HOST"'/{f=1} f && /^      token:/{print $2; exit}' ~/.config/tea/config.yml 2>/dev/null)"
+    [[ -z "$TOKEN" && "$GITEA_URL" == "https://$HOST" ]] && TOKEN="$GITEA_AUTH_TOKEN"
+    local AUTH=()
+    [[ -n "$TOKEN" ]] && AUTH=(-H "Authorization: token $TOKEN")
+    PR_JSON="$(curl -sf "${AUTH[@]}" "https://$HOST/api/v1/repos/$REPO/pulls/$PR_NUM")" || return 1
+    BRANCH="$(printf '%s' "$PR_JSON" | jq -r '.head.label')"
+  elif [[ $1 == *[/:]* ]]; then
     REMOTE="${1%%[/:]*}"
     BRANCH="${1#*[/:]}"
-    if ! git remote get-url "$REMOTE" &>/dev/null; then
-      local ORIGIN_URL REMOTE_URL
-      ORIGIN_URL="$(git remote get-url origin)"
-      if [[ "$ORIGIN_URL" == *://* ]]; then
-        REMOTE_URL="${ORIGIN_URL%/*/*}/${REMOTE}/${ORIGIN_URL##*/}"
-      else
-        REMOTE_URL="${ORIGIN_URL%%:*}:${REMOTE}/${ORIGIN_URL##*/}"
-      fi
-      git remote add "$REMOTE" "$REMOTE_URL"
-    fi
   else
     REMOTE="origin"
     BRANCH="$1"
+  fi
+  if [[ -n "$PR_JSON" ]]; then
+    local HEAD_FULL
+    HEAD_FULL="$(printf '%s' "$PR_JSON" | jq -r '.head.repo.full_name // empty')"
+    if [[ -z "$HEAD_FULL" || "$HEAD_FULL" == "$(printf '%s' "$PR_JSON" | jq -r '.base.repo.full_name')" ]]; then
+      REMOTE="origin"
+    else
+      REMOTE="$(printf '%s' "$PR_JSON" | jq -r '.head.repo.owner.login')"
+    fi
+  fi
+  if ! git remote get-url "$REMOTE" &>/dev/null; then
+    local ORIGIN_URL REMOTE_URL
+    ORIGIN_URL="$(git remote get-url origin)"
+    if [[ "$ORIGIN_URL" == *://* ]]; then
+      REMOTE_URL="${ORIGIN_URL%/*/*}/${REMOTE}/${ORIGIN_URL##*/}"
+    else
+      REMOTE_URL="${ORIGIN_URL%%:*}:${REMOTE}/${ORIGIN_URL##*/}"
+    fi
+    git remote add "$REMOTE" "$REMOTE_URL"
   fi
   git fetch "$REMOTE" "$BRANCH"
   git checkout -B "$BRANCH" -t "$REMOTE/$BRANCH"
