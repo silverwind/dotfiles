@@ -144,7 +144,7 @@ setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack.
 setopt PUSHD_SILENT         # Do not print the directory stack after pushd or popd.
 setopt PUSHD_TO_HOME        # Push to home directory when no argument is given.
 setopt MULTIOS              # Write to multiple descriptors.
-setopt EXTENDED_GLOB        # Use extended globbing syntax.
+# setopt EXTENDED_GLOB      # disabled: '#' as glob qualifier breaks unquoted URLs (e.g. ...#fragment)
 setopt AUTO_LIST
 setopt AUTO_PARAM_SLASH
 setopt AUTO_RESUME
@@ -383,7 +383,7 @@ gct() {
   git fetch "$REMOTE" "$BRANCH"
   git checkout -B "$BRANCH" -t "$REMOTE/$BRANCH"
 }
-
+alias gct='noglob gct'
 
 #######################################################
 # pager
