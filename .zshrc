@@ -381,9 +381,22 @@ gct() {
     git remote add "$REMOTE" "$REMOTE_URL"
   fi
   git fetch "$REMOTE" "$BRANCH"
+  local -a CONFLICTS=()
+  local PREFIX="$BRANCH" CHILD HEAD_REF
+  while [[ "$PREFIX" == */* ]]; do
+    PREFIX="${PREFIX%/*}"
+    git show-ref --verify --quiet "refs/heads/$PREFIX" && CONFLICTS+=("$PREFIX")
+  done
+  while IFS= read -r CHILD; do CONFLICTS+=("$CHILD"); done \
+    < <(git for-each-ref --format='%(refname:short)' "refs/heads/$BRANCH/")
+  if (( ${#CONFLICTS[@]} )); then
+    echo "Removing conflicting branches: ${CONFLICTS[*]}"
+    HEAD_REF="$(git symbolic-ref --short -q HEAD)"
+    [[ -n "$HEAD_REF" && " ${CONFLICTS[*]} " == *" $HEAD_REF "* ]] && git checkout --detach -q
+    git branch -D "${CONFLICTS[@]}"
+  fi
   git checkout -B "$BRANCH" -t "$REMOTE/$BRANCH"
 }
-alias gct='noglob gct'
 
 #######################################################
 # pager
