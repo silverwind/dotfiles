@@ -97,7 +97,7 @@ autoload -Uz compinit
 () {
   emulate -L zsh
   setopt extended_glob
-  if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.m+30) ]]; then
+  if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
     compinit -u
   else
     compinit -C -u
