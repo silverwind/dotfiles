@@ -339,20 +339,22 @@ gw() {
 # set branch to any remote branch: "gct user:branch", "gct user/branch", "gct branch", or "gct PR-URL"
 gct() {
   if [[ -z $1 ]]; then echo "Usage: gct [user:/]branch or PR-URL"; return 1; fi
-  local REMOTE BRANCH PR_JSON
+  git rev-parse --git-dir &>/dev/null || { echo "gct: not a git repo" >&2; return 1; }
+  local REMOTE BRANCH PR_JSON PR_HOST
   if [[ $1 == https://github.com/*/pull/* ]]; then
+    PR_HOST="github.com"
     local REST="${1#https://github.com/}"
     local PR_NUM="${REST##*/pull/}"; PR_NUM="${PR_NUM%%[/?#]*}"
     PR_JSON="$(gh api "repos/${REST%%/pull/*}/pulls/$PR_NUM")" || return 1
   elif [[ $1 == https://*/pulls/* ]]; then
     local REST="${1#https://}"
-    local HOST="${REST%%/*}"; REST="${REST#*/}"
+    PR_HOST="${REST%%/*}"; REST="${REST#*/}"
     local PR_NUM="${REST##*pulls/}"; PR_NUM="${PR_NUM%%[/?#]*}"
     local TOKEN
-    TOKEN="$(awk '/^    - name: '"$HOST"'/{f=1} f && /^      token:/{print $2; exit}' ~/.config/tea/config.yml 2>/dev/null)"
-    [[ -z "$TOKEN" && "$GITEA_URL" == "https://$HOST" ]] && TOKEN="$GITEA_AUTH_TOKEN"
+    TOKEN="$(awk '/^    - name: '"$PR_HOST"'/{f=1} f && /^      token:/{print $2; exit}' ~/.config/tea/config.yml 2>/dev/null)"
+    [[ -z "$TOKEN" && "$GITEA_URL" == "https://$PR_HOST" ]] && TOKEN="$GITEA_AUTH_TOKEN"
     local AUTH=(); [[ -n "$TOKEN" ]] && AUTH=(-H "Authorization: token $TOKEN")
-    PR_JSON="$(curl -sf "${AUTH[@]}" "https://$HOST/api/v1/repos/${REST%%/pulls/*}/pulls/$PR_NUM")" || return 1
+    PR_JSON="$(curl -sf "${AUTH[@]}" "https://$PR_HOST/api/v1/repos/${REST%%/pulls/*}/pulls/$PR_NUM")" || return 1
   elif [[ $1 == *[/:]* ]]; then
     REMOTE="${1%%[/:]*}"; BRANCH="${1#*[/:]}"
   else
@@ -361,12 +363,30 @@ gct() {
   if [[ -n "$PR_JSON" ]]; then
     local HEAD_REPO BASE_REPO HEAD_OWNER REMOTE_URL
     { read -r BRANCH; read -r HEAD_REPO; read -r BASE_REPO; read -r HEAD_OWNER; read -r REMOTE_URL; } < <(printf '%s' "$PR_JSON" | jq -r '.head.ref, (.head.repo.full_name // ""), .base.repo.full_name, (.head.repo.owner.login // ""), (.head.repo.ssh_url // .head.repo.clone_url // "")')
+    local NAME URL HOST OWNER_REPO MATCHED_REMOTE
+    for NAME in $(git remote); do
+      URL="$(git remote get-url "$NAME" 2>/dev/null)"; URL="${URL%/}"; URL="${URL%.git}"; URL="${URL%/}"
+      if [[ "$URL" == *://* ]]; then
+        HOST="${URL#*://}"; HOST="${HOST%%/*}"; HOST="${HOST##*@}"; HOST="${HOST%%:*}"
+        OWNER_REPO="${URL#*://*/}"
+      elif [[ "$URL" == *@*:* ]]; then
+        HOST="${URL%%:*}"; HOST="${HOST##*@}"
+        OWNER_REPO="${URL##*:}"
+      else continue
+      fi
+      [[ "$HOST" == "$PR_HOST" && "$OWNER_REPO" == "$BASE_REPO" ]] && { MATCHED_REMOTE="$NAME"; break; }
+    done
+    if [[ -z "$MATCHED_REMOTE" ]]; then
+      echo "gct: PR base $PR_HOST/$BASE_REPO doesn't match any remote in $(pwd)" >&2
+      return 1
+    fi
     if [[ -z "$HEAD_REPO" || "$HEAD_REPO" == "$BASE_REPO" ]]; then
-      REMOTE="origin"
+      REMOTE="$MATCHED_REMOTE"
     else
       REMOTE="$HEAD_OWNER"
-      if git remote get-url "$REMOTE" &>/dev/null; then
-        [[ "$(git remote get-url "$REMOTE")" != "$REMOTE_URL" ]] && git remote set-url "$REMOTE" "$REMOTE_URL"
+      local CUR_URL
+      if CUR_URL="$(git remote get-url "$REMOTE" 2>/dev/null)"; then
+        [[ "$CUR_URL" != "$REMOTE_URL" ]] && git remote set-url "$REMOTE" "$REMOTE_URL"
       else
         git remote add "$REMOTE" "$REMOTE_URL"
       fi
