@@ -5,7 +5,7 @@
 #######################################################
 
 source ~/.zinit/bin/zinit.zsh
-zinit light silverwind/zsh-history-substring-search # https://github.com/zsh-users/zsh-history-substring-search/pull/159
+zinit light zsh-users/zsh-history-substring-search
 zinit ice wait lucid
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -89,7 +89,7 @@ HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=none,fg=default'
 # key bindings
 #######################################################
 
-if [ -e "$HOME/.docker/completions" ]; then
+if [[ -e "$HOME/.docker/completions" ]]; then
   fpath=("$HOME/.docker/completions" $fpath)
 fi
 
@@ -116,22 +116,18 @@ bindkey ' ' magic-space
 bindkey -M viins ' ' magic-space
 
 # bind all possible home/end/delete key escape sequences
-bindkey '\e[H' beginning-of-line # Cygwin
-bindkey "e[1~" beginning-of-line # macOS
-bindkey '^[OH' beginning-of-line # Linux
-bindkey "e[7~" beginning-of-line
-bindkey "eOH" beginning-of-line
+bindkey '\e[H' beginning-of-line
+bindkey '\e[1~' beginning-of-line
+bindkey '\e[7~' beginning-of-line
+bindkey '^[OH' beginning-of-line
 
-bindkey '\e[F' end-of-line       # Cygwin
-bindkey "^[[4~" end-of-line      # macOS
-bindkey '^[OF' end-of-line       # Linux
-bindkey "e[4~" end-of-line
-bindkey "e[8~" end-of-line
-bindkey "eOF" end-of-line
+bindkey '\e[F' end-of-line
+bindkey '\e[4~' end-of-line
+bindkey '\e[8~' end-of-line
+bindkey '^[OF' end-of-line
 
-bindkey "^[[3~" delete-char      # Cygwin
-bindkey "\e[3~" delete-char
-bindkey "^[3;5~" delete-char
+bindkey '^[[3~' delete-char
+bindkey '^[[3;5~' delete-char
 
 bindkey '^?' backward-delete-char
 
@@ -179,40 +175,45 @@ setopt HIST_NO_STORE
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 setopt SHARE_HISTORY
-setopt ALL_EXPORT
 
 #######################################################
 # dircolors
 #######################################################
 
-if [ -f "$HOME/.dircolors" ]; then
-  if hash dircolors &>/dev/null; then
-    eval $(dircolors -b $HOME/.dircolors)
-  elif hash gdircolors &>/dev/null; then
-    eval $(gdircolors -b $HOME/.dircolors)
+() {
+  emulate -L zsh
+  local cache=$HOME/.dircolors.cache bin
+  [[ -f $HOME/.dircolors ]] || return
+  if (( $+commands[dircolors] )); then bin=$commands[dircolors]
+  elif (( $+commands[gdircolors] )); then bin=$commands[gdircolors]
+  else return
   fi
-fi
+  if [[ ! -f $cache || $HOME/.dircolors -nt $cache || $bin -nt $cache ]]; then
+    $bin -b $HOME/.dircolors > $cache
+  fi
+  [[ -s $cache ]] && source $cache
+}
 
 #######################################################
 # completion - based on zprezto
 #######################################################
 
-setopt ALWAYS_TO_END       # Move cursor to the end of a completed word.
-setopt MENU_COMPLETE       # Auio-select first match
+setopt ALWAYS_TO_END
+setopt MENU_COMPLETE       # Auto-select first match
 unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor.
 
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
 
 zstyle ':completion:*' completer _complete _ignored _approximate
-zstyle ':completion:*' rehash true # Automatically update PATH entries
+zstyle ':completion:*' rehash true
 zstyle ':completion:*' menu select=0
 zstyle ':completion:*' verbose true
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' list-dirs-first true
 zstyle ':completion:*' accept-exact-dirs true
 zstyle ':completion:*' squeeze-slashes true
-zstyle ':completion:*' show-completer true # Show which completer is currently running
+zstyle ':completion:*' show-completer true
 zstyle ':completion:*' single-ignored show
 zstyle ':completion:*' users off
 zstyle ':completion:*' special-dirs ..
@@ -297,13 +298,13 @@ alias gamend='git commit --amend'
 alias gp='gpush'
 
 gpush() {
-  BRANCH_NAME="$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')"
-  git push -u --follow-tags origin "$BRANCH_NAME" $@
+  local branch="$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')"
+  git push -u --follow-tags origin "$branch" "$@"
 }
 
 gpull() {
-  BRANCH_NAME="$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')"
-  git pull --tags --force origin "$BRANCH_NAME" $@
+  local branch="$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')"
+  git pull --tags --force origin "$branch" "$@"
 }
 
 # switch to or create a git worktree
@@ -325,7 +326,7 @@ gw() {
     return
   fi
   local wt_list=$(git worktree list)
-  local dir d
+  local dir d line
   while IFS= read -r line; do
     d=${line%% *}
     [[ -d "$d" ]] && [[ "${(L)line}" == *"${(L)1}"* ]] && { dir=$d; break; }
@@ -527,4 +528,4 @@ add-zsh-hook preexec termsupport_preexec
 # source .zshrc.local
 #######################################################
 
-if [ -f "$HOME/.zshrc.local" ]; then source "$HOME/.zshrc.local"; fi
+if [[ -f "$HOME/.zshrc.local" ]]; then source "$HOME/.zshrc.local"; fi
