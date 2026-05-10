@@ -93,8 +93,16 @@ if [ -e "$HOME/.docker/completions" ]; then
   fpath=("$HOME/.docker/completions" $fpath)
 fi
 
-autoload -U compinit
-compinit -u
+autoload -Uz compinit
+() {
+  emulate -L zsh
+  setopt extended_glob
+  if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.m+30) ]]; then
+    compinit -u
+  else
+    compinit -C -u
+  fi
+}
 
 bindkey '\eOA' history-substring-search-up
 bindkey '\eOB' history-substring-search-down
