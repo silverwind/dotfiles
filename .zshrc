@@ -409,19 +409,35 @@ gct() {
     fi
     git remote add "$REMOTE" "$REMOTE_URL"
   fi
-  git fetch "$REMOTE" "$BRANCH"
+  git fetch "$REMOTE" "$BRANCH" || return 1
   local -a CONFLICTS=()
-  local PREFIX="$BRANCH" CHILD HEAD_REF
+  local PREFIX="$BRANCH" CHILD
   while [[ "$PREFIX" == */* ]]; do
     PREFIX="${PREFIX%/*}"
     git show-ref --verify --quiet "refs/heads/$PREFIX" && CONFLICTS+=("$PREFIX")
   done
   while IFS= read -r CHILD; do CONFLICTS+=("$CHILD"); done \
     < <(git for-each-ref --format='%(refname:short)' "refs/heads/$BRANCH/")
+  local -A WT_BY_BRANCH; local WT_LINE WT_PATH WT_CUR WT_MAIN="" WT_BR
+  while IFS= read -r WT_LINE; do
+    case "$WT_LINE" in
+      ('worktree '*) WT_PATH="${WT_LINE#worktree }"; [[ -n "$WT_MAIN" ]] || WT_MAIN="$WT_PATH" ;;
+      ('branch refs/heads/'*) WT_BY_BRANCH[${WT_LINE#branch refs/heads/}]="$WT_PATH" ;;
+    esac
+  done < <(git worktree list --porcelain)
+  WT_CUR="$(git rev-parse --show-toplevel 2>/dev/null)"
+  for WT_BR in "$BRANCH" "${CONFLICTS[@]}"; do
+    WT_PATH="${WT_BY_BRANCH[$WT_BR]}"
+    [[ -z "$WT_PATH" ]] && continue
+    if [[ "$WT_PATH" == "$WT_CUR" || "$WT_PATH" == "$WT_MAIN" ]]; then
+      git -C "$WT_PATH" checkout --detach -q
+    else
+      echo "Discarding worktree $WT_PATH (branch $WT_BR)"
+      git worktree remove --force "$WT_PATH"
+    fi
+  done
   if (( ${#CONFLICTS[@]} )); then
     echo "Removing conflicting branches: ${CONFLICTS[*]}"
-    HEAD_REF="$(git symbolic-ref --short -q HEAD)"
-    [[ -n "$HEAD_REF" && " ${CONFLICTS[*]} " == *" $HEAD_REF "* ]] && git checkout --detach -q
     git branch -D "${CONFLICTS[@]}"
   fi
   git checkout -B "$BRANCH" -t "$REMOTE/$BRANCH"
