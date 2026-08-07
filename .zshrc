@@ -216,7 +216,7 @@ zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' show-completer true
 zstyle ':completion:*' single-ignored show
 zstyle ':completion:*' users off
-zstyle ':completion:*' special-dirs ..
+zstyle ':completion:*' special-dirs false
 zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':completion:*:options' description 'yes'
