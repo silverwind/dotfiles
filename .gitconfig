@@ -39,13 +39,10 @@
 	algorithm = histogram
 	wsErrorHighlight = all
 	context = 4
-	mnemonicPrefix = true
 [diff "bin"]
 	textconv = hexdump -v -C
 [credential]
 	helper = store
-[status]
-	showUntrackedFiles = no
 [pull]
 	rebase = true
 [push]
@@ -63,7 +60,6 @@
 [branch]
 	autosetupmerge = always
 [http]
-	sslverify = false
 	postBuffer = 1048576000
 [submodule]
 	fetchJobs = 0
