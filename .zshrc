@@ -451,6 +451,14 @@ export PAGER='most'
 export MANPAGER='most'
 
 #######################################################
+# claude code
+#######################################################
+
+if [[ -n $CLAUDECODE ]]; then
+  setopt SH_WORD_SPLIT  # claude is braindead about zsh word splitting
+fi
+
+#######################################################
 # title - based on https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/termsupport.zsh
 #######################################################
 
