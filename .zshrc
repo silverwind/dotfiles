@@ -64,7 +64,7 @@ function gitstatus_prompt_update() {
   GITSTATUS_PROMPT="${p}%f"
 }
 
-gitstatus_stop 'MY' && gitstatus_start 'MY'
+gitstatus_stop 'MY' && gitstatus_start -s 0 -u 0 -c 0 -d 0 'MY'
 add-zsh-hook precmd gitstatus_prompt_update
 _reset_cursor() { printf '\e[6 q'; }
 precmd_functions+=(_reset_cursor)
