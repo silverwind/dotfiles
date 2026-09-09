@@ -41,8 +41,6 @@
 	context = 4
 [diff "bin"]
 	textconv = hexdump -v -C
-[credential]
-	helper = store
 [pull]
 	rebase = true
 [push]
